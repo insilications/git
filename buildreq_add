@@ -6,6 +6,7 @@ asciidoc
 buildreq-cmake
 buildreq-golang
 curl-dev
+curl-staticdev
 docbook-xml
 expat-dev
 expat-staticdev
