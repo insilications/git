@@ -1,5 +1,6 @@
 PKG_NAME := git
-URL = https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
+URL = https://github.com/git/git.git
 ARCHIVES = 
+ARCHIVES_GIT = 
 
 include ../common/Makefile.common

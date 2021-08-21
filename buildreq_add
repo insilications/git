@@ -1,20 +1,30 @@
 #
-# This file contains extra pkgconfig build requirements that don't get picked up but are 
+# This file contains extra pkgconfig build requirements that don't get picked up but are
 # desirable. One name per line, no whitespace.
 #
-openssl-dev
-pcre2-dev
 asciidoc
+buildreq-cmake
+buildreq-golang
 curl-dev
-expat-dev
-tcl
-zlib-dev
-perl-Error
-tk
-xmlto
-util-linux
 docbook-xml
-libxslt-bin
+expat-dev
+expat-staticdev
 libxml2-dev
-python3-dev
+libxml2-staticdev
+libxslt-bin
 nghttp2-dev
+openssl-dev
+openssl-staticdev
+pcre2-dev
+pcre2-staticdev
+perl-Error
+python3-dev
+python3-staticdev
+tcl
+tk
+util-linux
+util-linux-dev
+util-linux-staticdev
+xmlto
+zlib-dev
+zlib-staticdev

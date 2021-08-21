@@ -4,36 +4,38 @@
 #
 Name     : git
 Version  : 2.33.0
-Release  : 181
-URL      : https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
-Source0  : https://www.kernel.org/pub/software/scm/git/git-2.33.0.tar.xz
+Release  : 182
+URL      : file:///aot/build/clearlinux/packages/git/git-v2.33.0.tar.gz
+Source0  : file:///aot/build/clearlinux/packages/git/git-v2.33.0.tar.gz
 Summary  : the fast distributed version control system
 Group    : Development/Tools
-License  : Apache-2.0 BSL-1.0 GPL-2.0 MIT
-Requires: git-bin = %{version}-%{release}
-Requires: git-data = %{version}-%{release}
-Requires: git-libexec = %{version}-%{release}
-Requires: git-license = %{version}-%{release}
-Requires: git-locales = %{version}-%{release}
-Requires: git-man = %{version}-%{release}
+License  : Apache-2.0 GPL-2.0
 BuildRequires : asciidoc
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-golang
 BuildRequires : curl-dev
 BuildRequires : docbook-xml
 BuildRequires : expat-dev
+BuildRequires : expat-staticdev
 BuildRequires : libxml2-dev
+BuildRequires : libxml2-staticdev
 BuildRequires : libxslt-bin
 BuildRequires : nghttp2-dev
 BuildRequires : openssl-dev
+BuildRequires : openssl-staticdev
 BuildRequires : pcre2-dev
+BuildRequires : pcre2-staticdev
 BuildRequires : perl-Error
 BuildRequires : python3-dev
+BuildRequires : python3-staticdev
 BuildRequires : tcl
 BuildRequires : tk
 BuildRequires : util-linux
+BuildRequires : util-linux-dev
+BuildRequires : util-linux-staticdev
 BuildRequires : xmlto
 BuildRequires : zlib-dev
+BuildRequires : zlib-staticdev
 Patch1: 0001-Set-default-autocorrect-timeout-to-1.5-seconds.patch
 Patch2: 0002-Fix-expected-result-for-a-for-each-ref-test.patch
 
@@ -44,126 +46,56 @@ This directory holds many test scripts for core Git tools.  The
 first part of this short document describes how to run the tests
 and read their output.
 
-%package bin
-Summary: bin components for the git package.
-Group: Binaries
-Requires: git-data = %{version}-%{release}
-Requires: git-libexec = %{version}-%{release}
-Requires: git-license = %{version}-%{release}
-
-%description bin
-bin components for the git package.
-
-
-%package data
-Summary: data components for the git package.
-Group: Data
-
-%description data
-data components for the git package.
-
-
-%package extras
-Summary: extras components for the git package.
-Group: Default
-
-%description extras
-extras components for the git package.
-
-
-%package libexec
-Summary: libexec components for the git package.
-Group: Default
-Requires: git-license = %{version}-%{release}
-
-%description libexec
-libexec components for the git package.
-
-
-%package license
-Summary: license components for the git package.
-Group: Default
-
-%description license
-license components for the git package.
-
-
-%package locales
-Summary: locales components for the git package.
-Group: Default
-
-%description locales
-locales components for the git package.
-
-
-%package man
-Summary: man components for the git package.
-Group: Default
-
-%description man
-man components for the git package.
-
-
 %prep
-%setup -q -n git-2.33.0
-cd %{_builddir}/git-2.33.0
+%setup -q -n git
+cd %{_builddir}/git
 %patch1 -p1
 %patch2 -p1
-pushd ..
-cp -a git-2.33.0 buildavx2
+pushd %{_builddir}
+cp -a %{_builddir}/git buildavx2
 popd
 
 %build
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
+unset http_proxy
+unset https_proxy
+unset no_proxy
+export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1629158051
+export SOURCE_DATE_EPOCH=1629554286
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -mprefer-vector-width=256 "
-%configure --disable-static --with-expat --with-libpcre --with-curl \
-PYTHON=/usr/bin/python3
-make  %{?_smp_mflags}
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=16 -fno-semantic-interposition -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=16 -fno-semantic-interposition -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=16 -fno-semantic-interposition -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=16 -fno-semantic-interposition -mprefer-vector-width=256 "
+make  %{?_smp_mflags}    V=1 VERBOSE=1
 
-unset PKG_CONFIG_PATH
-pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=haswell"
-export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
-export FFLAGS="$FFLAGS -m64 -march=haswell"
-export FCFLAGS="$FCFLAGS -m64 -march=haswell"
-export LDFLAGS="$LDFLAGS -m64 -march=haswell"
-%configure --disable-static --with-expat --with-libpcre --with-curl \
-PYTHON=/usr/bin/python3
-make  %{?_smp_mflags}
+pushd ../buildavx2
+export CFLAGS="$CFLAGS -m64 -march=native -mtune=native"
+export CXXFLAGS="$CXXFLAGS -m64 -march=native -mtune=native"
+export FFLAGS="$FFLAGS -m64 -march=native -mtune=native"
+export FCFLAGS="$FCFLAGS -m64 -march=native -mtune=native"
+export LDFLAGS="$LDFLAGS -m64 -march=native -mtune=native"
+make  %{?_smp_mflags}    V=1 VERBOSE=1
 popd
+
 %check
 export LANG=C.UTF-8
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
+unset http_proxy
+unset https_proxy
+unset no_proxy
+export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 make %{?_smp_mflags} test
 
 %install
-export SOURCE_DATE_EPOCH=1629158051
+export SOURCE_DATE_EPOCH=1629554286
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/package-licenses/git
-cp %{_builddir}/git-2.33.0/COPYING %{buildroot}/usr/share/package-licenses/git/3ee0019d4f4ea0a9d3f50800833f30dc14e2968e
-cp %{_builddir}/git-2.33.0/compat/nedmalloc/License.txt %{buildroot}/usr/share/package-licenses/git/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-cp %{_builddir}/git-2.33.0/contrib/persistent-https/LICENSE %{buildroot}/usr/share/package-licenses/git/2b8b815229aa8a61e483fb4ba0588b8b6c491890
-cp %{_builddir}/git-2.33.0/contrib/subtree/COPYING %{buildroot}/usr/share/package-licenses/git/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-cp %{_builddir}/git-2.33.0/sha1dc/LICENSE.txt %{buildroot}/usr/share/package-licenses/git/f0197ae0a546d825bcd59ba21034f36272080a4a
-cp %{_builddir}/git-2.33.0/t/lib-diff/COPYING %{buildroot}/usr/share/package-licenses/git/2444921d595953ac768e3fb0c8ed97e62a45dc38
 pushd ../buildavx2/
 %make_install_avx2
 popd
 %make_install
-%find_lang git
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/gitk
 rm -f %{buildroot}/usr/lib/perl5/site_perl/*/x86_64-linux-thread-multi/auto/Git/.packlist
@@ -186,454 +118,3 @@ rm -f %{buildroot}/usr/share/man/man1/gitk.1
 
 %files
 %defattr(-,root,root,-)
-
-%files bin
-%defattr(-,root,root,-)
-/usr/bin/git
-/usr/bin/git-receive-pack
-/usr/bin/git-shell
-/usr/bin/git-upload-archive
-/usr/bin/git-upload-pack
-/usr/bin/haswell/git
-/usr/bin/haswell/git-receive-pack
-/usr/bin/haswell/git-shell
-/usr/bin/haswell/git-upload-archive
-/usr/bin/haswell/git-upload-pack
-
-%files data
-%defattr(-,root,root,-)
-/usr/share/bash-completion/completions/git
-/usr/share/git-core/git-prompt.sh
-/usr/share/git-core/templates/description
-/usr/share/git-core/templates/hooks/applypatch-msg.sample
-/usr/share/git-core/templates/hooks/commit-msg.sample
-/usr/share/git-core/templates/hooks/post-update.sample
-/usr/share/git-core/templates/hooks/pre-applypatch.sample
-/usr/share/git-core/templates/hooks/pre-commit.sample
-/usr/share/git-core/templates/hooks/pre-merge-commit.sample
-/usr/share/git-core/templates/hooks/pre-push.sample
-/usr/share/git-core/templates/hooks/pre-receive.sample
-/usr/share/git-core/templates/hooks/push-to-checkout.sample
-/usr/share/git-core/templates/hooks/update.sample
-/usr/share/git-core/templates/info/exclude
-/usr/share/gitweb/static/git-favicon.png
-/usr/share/gitweb/static/git-logo.png
-/usr/share/gitweb/static/gitweb.css
-/usr/share/gitweb/static/gitweb.js
-
-%files extras
-%defattr(-,root,root,-)
-/usr/bin/git-cvsserver
-/usr/libexec/git-core/git-add--interactive
-/usr/libexec/git-core/git-archimport
-/usr/libexec/git-core/git-cvsexportcommit
-/usr/libexec/git-core/git-cvsimport
-/usr/libexec/git-core/git-cvsserver
-/usr/libexec/git-core/git-instaweb
-/usr/libexec/git-core/git-p4
-/usr/libexec/git-core/git-request-pull
-/usr/libexec/git-core/git-send-email
-/usr/libexec/git-core/git-subtree
-/usr/libexec/git-core/git-svn
-/usr/share/git-core/templates/hooks/fsmonitor-watchman.sample
-/usr/share/git-core/templates/hooks/pre-rebase.sample
-/usr/share/git-core/templates/hooks/prepare-commit-msg.sample
-/usr/share/gitweb/gitweb.cgi
-/usr/share/perl5/FromCPAN/Error.pm
-/usr/share/perl5/FromCPAN/Mail/Address.pm
-/usr/share/perl5/Git.pm
-/usr/share/perl5/Git/I18N.pm
-/usr/share/perl5/Git/IndexInfo.pm
-/usr/share/perl5/Git/LoadCPAN.pm
-/usr/share/perl5/Git/LoadCPAN/Error.pm
-/usr/share/perl5/Git/LoadCPAN/Mail/Address.pm
-/usr/share/perl5/Git/Packet.pm
-/usr/share/perl5/Git/SVN.pm
-/usr/share/perl5/Git/SVN/Editor.pm
-/usr/share/perl5/Git/SVN/Fetcher.pm
-/usr/share/perl5/Git/SVN/GlobSpec.pm
-/usr/share/perl5/Git/SVN/Log.pm
-/usr/share/perl5/Git/SVN/Memoize/YAML.pm
-/usr/share/perl5/Git/SVN/Migration.pm
-/usr/share/perl5/Git/SVN/Prompt.pm
-/usr/share/perl5/Git/SVN/Ra.pm
-/usr/share/perl5/Git/SVN/Utils.pm
-
-%files libexec
-%defattr(-,root,root,-)
-/usr/libexec/git-core/git
-/usr/libexec/git-core/git-add
-/usr/libexec/git-core/git-am
-/usr/libexec/git-core/git-annotate
-/usr/libexec/git-core/git-apply
-/usr/libexec/git-core/git-archive
-/usr/libexec/git-core/git-bisect
-/usr/libexec/git-core/git-bisect--helper
-/usr/libexec/git-core/git-blame
-/usr/libexec/git-core/git-branch
-/usr/libexec/git-core/git-bugreport
-/usr/libexec/git-core/git-bundle
-/usr/libexec/git-core/git-cat-file
-/usr/libexec/git-core/git-check-attr
-/usr/libexec/git-core/git-check-ignore
-/usr/libexec/git-core/git-check-mailmap
-/usr/libexec/git-core/git-check-ref-format
-/usr/libexec/git-core/git-checkout
-/usr/libexec/git-core/git-checkout--worker
-/usr/libexec/git-core/git-checkout-index
-/usr/libexec/git-core/git-cherry
-/usr/libexec/git-core/git-cherry-pick
-/usr/libexec/git-core/git-citool
-/usr/libexec/git-core/git-clean
-/usr/libexec/git-core/git-clone
-/usr/libexec/git-core/git-column
-/usr/libexec/git-core/git-commit
-/usr/libexec/git-core/git-commit-graph
-/usr/libexec/git-core/git-commit-tree
-/usr/libexec/git-core/git-config
-/usr/libexec/git-core/git-count-objects
-/usr/libexec/git-core/git-credential
-/usr/libexec/git-core/git-credential-cache
-/usr/libexec/git-core/git-credential-cache--daemon
-/usr/libexec/git-core/git-credential-store
-/usr/libexec/git-core/git-daemon
-/usr/libexec/git-core/git-describe
-/usr/libexec/git-core/git-diff
-/usr/libexec/git-core/git-diff-files
-/usr/libexec/git-core/git-diff-index
-/usr/libexec/git-core/git-diff-tree
-/usr/libexec/git-core/git-difftool
-/usr/libexec/git-core/git-difftool--helper
-/usr/libexec/git-core/git-env--helper
-/usr/libexec/git-core/git-fast-export
-/usr/libexec/git-core/git-fast-import
-/usr/libexec/git-core/git-fetch
-/usr/libexec/git-core/git-fetch-pack
-/usr/libexec/git-core/git-filter-branch
-/usr/libexec/git-core/git-fmt-merge-msg
-/usr/libexec/git-core/git-for-each-ref
-/usr/libexec/git-core/git-for-each-repo
-/usr/libexec/git-core/git-format-patch
-/usr/libexec/git-core/git-fsck
-/usr/libexec/git-core/git-fsck-objects
-/usr/libexec/git-core/git-gc
-/usr/libexec/git-core/git-get-tar-commit-id
-/usr/libexec/git-core/git-grep
-/usr/libexec/git-core/git-hash-object
-/usr/libexec/git-core/git-help
-/usr/libexec/git-core/git-http-backend
-/usr/libexec/git-core/git-http-fetch
-/usr/libexec/git-core/git-http-push
-/usr/libexec/git-core/git-imap-send
-/usr/libexec/git-core/git-index-pack
-/usr/libexec/git-core/git-init
-/usr/libexec/git-core/git-init-db
-/usr/libexec/git-core/git-interpret-trailers
-/usr/libexec/git-core/git-log
-/usr/libexec/git-core/git-ls-files
-/usr/libexec/git-core/git-ls-remote
-/usr/libexec/git-core/git-ls-tree
-/usr/libexec/git-core/git-mailinfo
-/usr/libexec/git-core/git-mailsplit
-/usr/libexec/git-core/git-maintenance
-/usr/libexec/git-core/git-merge
-/usr/libexec/git-core/git-merge-base
-/usr/libexec/git-core/git-merge-file
-/usr/libexec/git-core/git-merge-index
-/usr/libexec/git-core/git-merge-octopus
-/usr/libexec/git-core/git-merge-one-file
-/usr/libexec/git-core/git-merge-ours
-/usr/libexec/git-core/git-merge-recursive
-/usr/libexec/git-core/git-merge-resolve
-/usr/libexec/git-core/git-merge-subtree
-/usr/libexec/git-core/git-merge-tree
-/usr/libexec/git-core/git-mergetool
-/usr/libexec/git-core/git-mergetool--lib
-/usr/libexec/git-core/git-mktag
-/usr/libexec/git-core/git-mktree
-/usr/libexec/git-core/git-multi-pack-index
-/usr/libexec/git-core/git-mv
-/usr/libexec/git-core/git-name-rev
-/usr/libexec/git-core/git-notes
-/usr/libexec/git-core/git-pack-objects
-/usr/libexec/git-core/git-pack-redundant
-/usr/libexec/git-core/git-pack-refs
-/usr/libexec/git-core/git-patch-id
-/usr/libexec/git-core/git-prune
-/usr/libexec/git-core/git-prune-packed
-/usr/libexec/git-core/git-pull
-/usr/libexec/git-core/git-push
-/usr/libexec/git-core/git-quiltimport
-/usr/libexec/git-core/git-range-diff
-/usr/libexec/git-core/git-read-tree
-/usr/libexec/git-core/git-rebase
-/usr/libexec/git-core/git-rebase--preserve-merges
-/usr/libexec/git-core/git-receive-pack
-/usr/libexec/git-core/git-reflog
-/usr/libexec/git-core/git-remote
-/usr/libexec/git-core/git-remote-ext
-/usr/libexec/git-core/git-remote-fd
-/usr/libexec/git-core/git-remote-ftp
-/usr/libexec/git-core/git-remote-ftps
-/usr/libexec/git-core/git-remote-http
-/usr/libexec/git-core/git-remote-https
-/usr/libexec/git-core/git-repack
-/usr/libexec/git-core/git-replace
-/usr/libexec/git-core/git-rerere
-/usr/libexec/git-core/git-reset
-/usr/libexec/git-core/git-restore
-/usr/libexec/git-core/git-rev-list
-/usr/libexec/git-core/git-rev-parse
-/usr/libexec/git-core/git-revert
-/usr/libexec/git-core/git-rm
-/usr/libexec/git-core/git-send-pack
-/usr/libexec/git-core/git-sh-i18n
-/usr/libexec/git-core/git-sh-i18n--envsubst
-/usr/libexec/git-core/git-sh-setup
-/usr/libexec/git-core/git-shell
-/usr/libexec/git-core/git-shortlog
-/usr/libexec/git-core/git-show
-/usr/libexec/git-core/git-show-branch
-/usr/libexec/git-core/git-show-index
-/usr/libexec/git-core/git-show-ref
-/usr/libexec/git-core/git-sparse-checkout
-/usr/libexec/git-core/git-stage
-/usr/libexec/git-core/git-stash
-/usr/libexec/git-core/git-status
-/usr/libexec/git-core/git-stripspace
-/usr/libexec/git-core/git-submodule
-/usr/libexec/git-core/git-submodule--helper
-/usr/libexec/git-core/git-switch
-/usr/libexec/git-core/git-symbolic-ref
-/usr/libexec/git-core/git-tag
-/usr/libexec/git-core/git-unpack-file
-/usr/libexec/git-core/git-unpack-objects
-/usr/libexec/git-core/git-update-index
-/usr/libexec/git-core/git-update-ref
-/usr/libexec/git-core/git-update-server-info
-/usr/libexec/git-core/git-upload-archive
-/usr/libexec/git-core/git-upload-pack
-/usr/libexec/git-core/git-var
-/usr/libexec/git-core/git-verify-commit
-/usr/libexec/git-core/git-verify-pack
-/usr/libexec/git-core/git-verify-tag
-/usr/libexec/git-core/git-web--browse
-/usr/libexec/git-core/git-whatchanged
-/usr/libexec/git-core/git-worktree
-/usr/libexec/git-core/git-write-tree
-/usr/libexec/git-core/mergetools/araxis
-/usr/libexec/git-core/mergetools/bc
-/usr/libexec/git-core/mergetools/codecompare
-/usr/libexec/git-core/mergetools/deltawalker
-/usr/libexec/git-core/mergetools/diffmerge
-/usr/libexec/git-core/mergetools/diffuse
-/usr/libexec/git-core/mergetools/ecmerge
-/usr/libexec/git-core/mergetools/emerge
-/usr/libexec/git-core/mergetools/examdiff
-/usr/libexec/git-core/mergetools/guiffy
-/usr/libexec/git-core/mergetools/gvimdiff
-/usr/libexec/git-core/mergetools/kdiff3
-/usr/libexec/git-core/mergetools/kompare
-/usr/libexec/git-core/mergetools/meld
-/usr/libexec/git-core/mergetools/nvimdiff
-/usr/libexec/git-core/mergetools/opendiff
-/usr/libexec/git-core/mergetools/p4merge
-/usr/libexec/git-core/mergetools/smerge
-/usr/libexec/git-core/mergetools/tkdiff
-/usr/libexec/git-core/mergetools/tortoisemerge
-/usr/libexec/git-core/mergetools/vimdiff
-/usr/libexec/git-core/mergetools/winmerge
-/usr/libexec/git-core/mergetools/xxdiff
-
-%files license
-%defattr(0644,root,root,0755)
-/usr/share/package-licenses/git/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-/usr/share/package-licenses/git/2444921d595953ac768e3fb0c8ed97e62a45dc38
-/usr/share/package-licenses/git/2b8b815229aa8a61e483fb4ba0588b8b6c491890
-/usr/share/package-licenses/git/3cba29011be2b9d59f6204d6fa0a386b1b2dbd90
-/usr/share/package-licenses/git/3ee0019d4f4ea0a9d3f50800833f30dc14e2968e
-/usr/share/package-licenses/git/f0197ae0a546d825bcd59ba21034f36272080a4a
-
-%files man
-%defattr(0644,root,root,0755)
-/usr/share/man/man1/git-add.1
-/usr/share/man/man1/git-am.1
-/usr/share/man/man1/git-annotate.1
-/usr/share/man/man1/git-apply.1
-/usr/share/man/man1/git-archimport.1
-/usr/share/man/man1/git-archive.1
-/usr/share/man/man1/git-bisect.1
-/usr/share/man/man1/git-blame.1
-/usr/share/man/man1/git-branch.1
-/usr/share/man/man1/git-bugreport.1
-/usr/share/man/man1/git-bundle.1
-/usr/share/man/man1/git-cat-file.1
-/usr/share/man/man1/git-check-attr.1
-/usr/share/man/man1/git-check-ignore.1
-/usr/share/man/man1/git-check-mailmap.1
-/usr/share/man/man1/git-check-ref-format.1
-/usr/share/man/man1/git-checkout-index.1
-/usr/share/man/man1/git-checkout.1
-/usr/share/man/man1/git-cherry-pick.1
-/usr/share/man/man1/git-cherry.1
-/usr/share/man/man1/git-citool.1
-/usr/share/man/man1/git-clean.1
-/usr/share/man/man1/git-clone.1
-/usr/share/man/man1/git-column.1
-/usr/share/man/man1/git-commit-graph.1
-/usr/share/man/man1/git-commit-tree.1
-/usr/share/man/man1/git-commit.1
-/usr/share/man/man1/git-config.1
-/usr/share/man/man1/git-count-objects.1
-/usr/share/man/man1/git-credential-cache--daemon.1
-/usr/share/man/man1/git-credential-cache.1
-/usr/share/man/man1/git-credential-store.1
-/usr/share/man/man1/git-credential.1
-/usr/share/man/man1/git-cvsexportcommit.1
-/usr/share/man/man1/git-cvsimport.1
-/usr/share/man/man1/git-cvsserver.1
-/usr/share/man/man1/git-daemon.1
-/usr/share/man/man1/git-describe.1
-/usr/share/man/man1/git-diff-files.1
-/usr/share/man/man1/git-diff-index.1
-/usr/share/man/man1/git-diff-tree.1
-/usr/share/man/man1/git-diff.1
-/usr/share/man/man1/git-difftool.1
-/usr/share/man/man1/git-fast-export.1
-/usr/share/man/man1/git-fast-import.1
-/usr/share/man/man1/git-fetch-pack.1
-/usr/share/man/man1/git-fetch.1
-/usr/share/man/man1/git-filter-branch.1
-/usr/share/man/man1/git-fmt-merge-msg.1
-/usr/share/man/man1/git-for-each-ref.1
-/usr/share/man/man1/git-for-each-repo.1
-/usr/share/man/man1/git-format-patch.1
-/usr/share/man/man1/git-fsck-objects.1
-/usr/share/man/man1/git-fsck.1
-/usr/share/man/man1/git-gc.1
-/usr/share/man/man1/git-get-tar-commit-id.1
-/usr/share/man/man1/git-grep.1
-/usr/share/man/man1/git-hash-object.1
-/usr/share/man/man1/git-help.1
-/usr/share/man/man1/git-http-backend.1
-/usr/share/man/man1/git-http-fetch.1
-/usr/share/man/man1/git-http-push.1
-/usr/share/man/man1/git-imap-send.1
-/usr/share/man/man1/git-index-pack.1
-/usr/share/man/man1/git-init-db.1
-/usr/share/man/man1/git-init.1
-/usr/share/man/man1/git-instaweb.1
-/usr/share/man/man1/git-interpret-trailers.1
-/usr/share/man/man1/git-log.1
-/usr/share/man/man1/git-ls-files.1
-/usr/share/man/man1/git-ls-remote.1
-/usr/share/man/man1/git-ls-tree.1
-/usr/share/man/man1/git-mailinfo.1
-/usr/share/man/man1/git-mailsplit.1
-/usr/share/man/man1/git-maintenance.1
-/usr/share/man/man1/git-merge-base.1
-/usr/share/man/man1/git-merge-file.1
-/usr/share/man/man1/git-merge-index.1
-/usr/share/man/man1/git-merge-one-file.1
-/usr/share/man/man1/git-merge-tree.1
-/usr/share/man/man1/git-merge.1
-/usr/share/man/man1/git-mergetool--lib.1
-/usr/share/man/man1/git-mergetool.1
-/usr/share/man/man1/git-mktag.1
-/usr/share/man/man1/git-mktree.1
-/usr/share/man/man1/git-multi-pack-index.1
-/usr/share/man/man1/git-mv.1
-/usr/share/man/man1/git-name-rev.1
-/usr/share/man/man1/git-notes.1
-/usr/share/man/man1/git-p4.1
-/usr/share/man/man1/git-pack-objects.1
-/usr/share/man/man1/git-pack-redundant.1
-/usr/share/man/man1/git-pack-refs.1
-/usr/share/man/man1/git-patch-id.1
-/usr/share/man/man1/git-prune-packed.1
-/usr/share/man/man1/git-prune.1
-/usr/share/man/man1/git-pull.1
-/usr/share/man/man1/git-push.1
-/usr/share/man/man1/git-quiltimport.1
-/usr/share/man/man1/git-range-diff.1
-/usr/share/man/man1/git-read-tree.1
-/usr/share/man/man1/git-rebase.1
-/usr/share/man/man1/git-receive-pack.1
-/usr/share/man/man1/git-reflog.1
-/usr/share/man/man1/git-remote-ext.1
-/usr/share/man/man1/git-remote-fd.1
-/usr/share/man/man1/git-remote.1
-/usr/share/man/man1/git-repack.1
-/usr/share/man/man1/git-replace.1
-/usr/share/man/man1/git-request-pull.1
-/usr/share/man/man1/git-rerere.1
-/usr/share/man/man1/git-reset.1
-/usr/share/man/man1/git-restore.1
-/usr/share/man/man1/git-rev-list.1
-/usr/share/man/man1/git-rev-parse.1
-/usr/share/man/man1/git-revert.1
-/usr/share/man/man1/git-rm.1
-/usr/share/man/man1/git-send-email.1
-/usr/share/man/man1/git-send-pack.1
-/usr/share/man/man1/git-sh-i18n--envsubst.1
-/usr/share/man/man1/git-sh-i18n.1
-/usr/share/man/man1/git-sh-setup.1
-/usr/share/man/man1/git-shell.1
-/usr/share/man/man1/git-shortlog.1
-/usr/share/man/man1/git-show-branch.1
-/usr/share/man/man1/git-show-index.1
-/usr/share/man/man1/git-show-ref.1
-/usr/share/man/man1/git-show.1
-/usr/share/man/man1/git-sparse-checkout.1
-/usr/share/man/man1/git-stage.1
-/usr/share/man/man1/git-stash.1
-/usr/share/man/man1/git-status.1
-/usr/share/man/man1/git-stripspace.1
-/usr/share/man/man1/git-submodule.1
-/usr/share/man/man1/git-svn.1
-/usr/share/man/man1/git-switch.1
-/usr/share/man/man1/git-symbolic-ref.1
-/usr/share/man/man1/git-tag.1
-/usr/share/man/man1/git-unpack-file.1
-/usr/share/man/man1/git-unpack-objects.1
-/usr/share/man/man1/git-update-index.1
-/usr/share/man/man1/git-update-ref.1
-/usr/share/man/man1/git-update-server-info.1
-/usr/share/man/man1/git-upload-archive.1
-/usr/share/man/man1/git-upload-pack.1
-/usr/share/man/man1/git-var.1
-/usr/share/man/man1/git-verify-commit.1
-/usr/share/man/man1/git-verify-pack.1
-/usr/share/man/man1/git-verify-tag.1
-/usr/share/man/man1/git-web--browse.1
-/usr/share/man/man1/git-whatchanged.1
-/usr/share/man/man1/git-worktree.1
-/usr/share/man/man1/git-write-tree.1
-/usr/share/man/man1/git.1
-/usr/share/man/man1/gitweb.1
-/usr/share/man/man5/gitattributes.5
-/usr/share/man/man5/githooks.5
-/usr/share/man/man5/gitignore.5
-/usr/share/man/man5/gitmailmap.5
-/usr/share/man/man5/gitmodules.5
-/usr/share/man/man5/gitrepository-layout.5
-/usr/share/man/man5/gitweb.conf.5
-/usr/share/man/man7/gitcli.7
-/usr/share/man/man7/gitcore-tutorial.7
-/usr/share/man/man7/gitcredentials.7
-/usr/share/man/man7/gitcvs-migration.7
-/usr/share/man/man7/gitdiffcore.7
-/usr/share/man/man7/giteveryday.7
-/usr/share/man/man7/gitfaq.7
-/usr/share/man/man7/gitglossary.7
-/usr/share/man/man7/gitnamespaces.7
-/usr/share/man/man7/gitremote-helpers.7
-/usr/share/man/man7/gitrevisions.7
-/usr/share/man/man7/gitsubmodules.7
-/usr/share/man/man7/gittutorial-2.7
-/usr/share/man/man7/gittutorial.7
-/usr/share/man/man7/gitworkflows.7
-
-%files locales -f git.lang
-%defattr(-,root,root,-)
-
