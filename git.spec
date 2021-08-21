@@ -19,6 +19,7 @@ BuildRequires : curl-staticdev
 BuildRequires : docbook-xml
 BuildRequires : expat-dev
 BuildRequires : expat-staticdev
+BuildRequires : git
 BuildRequires : libxml2-dev
 BuildRequires : libxml2-staticdev
 BuildRequires : libxslt-bin
@@ -63,7 +64,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1629556162
+export SOURCE_DATE_EPOCH=1629568309
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -193,8 +194,15 @@ export LIBVA_DRIVER_NAME=vdpau
 export LIBVA_DRIVERS_PATH=/usr/lib64/dri
 export GTK_RC_FILES=/etc/gtk/gtkrc
 export FONTCONFIG_PATH=/usr/share/defaults/fonts
-make -j1 V=1 VERBOSE=1 test ||:
-make -j1 V=1 VERBOSE=1 perf ||:
+pushd /builddir/build/BUILD/
+rm -rf linux/ || :
+git clone https://github.com/torvalds/linux.git
+popd
+export GIT_PERF_EXTRA=1
+export GIT_PERF_MAKE_OPTS='-j8'
+export GIT_PERF_LARGE_REPO='/builddir/build/BUILD/linux/.git/'
+make -j1 perf V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_MAKE_OPTS='-j8' GIT_PERF_LARGE_REPO='/builddir/build/BUILD/linux/.git/' || :
+make -j1 test V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_MAKE_OPTS='-j8' GIT_PERF_LARGE_REPO='/builddir/build/BUILD/linux/.git/' || :
 export LD_LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64/chromium:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 export LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64/chromium:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 ## profile_payload end
@@ -224,7 +232,7 @@ fi
 
 
 %install
-export SOURCE_DATE_EPOCH=1629556162
+export SOURCE_DATE_EPOCH=1629568309
 rm -rf %{buildroot}
 %make_install
 ## Remove excluded files

@@ -10,6 +10,7 @@ curl-staticdev
 docbook-xml
 expat-dev
 expat-staticdev
+git
 libxml2-dev
 libxml2-staticdev
 libxslt-bin
