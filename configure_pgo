@@ -1,0 +1,5 @@
+--with-expat
+--with-libpcre2
+--with-curl
+--with-python=/usr/bin/python3
+PYTHON=/usr/bin/python3
