@@ -21,12 +21,10 @@ export LIBVA_DRIVER_NAME=vdpau
 export LIBVA_DRIVERS_PATH=/usr/lib64/dri
 export GTK_RC_FILES=/etc/gtk/gtkrc
 export FONTCONFIG_PATH=/usr/share/defaults/fonts
-pushd /builddir/build/BUILD/
-rm -rf linux/ || :
-git clone https://github.com/torvalds/linux.git
-popd
 export GIT_PERF_EXTRA=1
-export GIT_PERF_MAKE_OPTS='-j8'
-export GIT_PERF_LARGE_REPO='/builddir/build/BUILD/linux/.git/'
-make -j1 perf V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_MAKE_OPTS='-j8' GIT_PERF_LARGE_REPO='/builddir/build/BUILD/linux/.git/' || :
-make -j1 test V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_MAKE_OPTS='-j8' GIT_PERF_LARGE_REPO='/builddir/build/BUILD/linux/.git/' || :
+export GIT_PERF_REPEAT_COUNT=1
+export GIT_PERF_MAKE_OPTS="-j1"
+export GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git"
+export GIT_PERF_REPO="/builddir/build/BUILD/git"
+make -j1 perf V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_REPEAT_COUNT=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
+make -j1 test V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_REPEAT_COUNT=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
