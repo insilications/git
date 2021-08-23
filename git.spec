@@ -11,6 +11,11 @@ Source0  : file:///aot/build/clearlinux/packages/git/git-v2.33.0.tar.gz
 Summary  : the fast distributed version control system
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0
+Requires: git-bin = %{version}-%{release}
+Requires: git-data = %{version}-%{release}
+Requires: git-libexec = %{version}-%{release}
+Requires: git-locales = %{version}-%{release}
+Requires: git-man = %{version}-%{release}
 BuildRequires : asciidoc
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-golang
@@ -19,6 +24,7 @@ BuildRequires : curl-staticdev
 BuildRequires : docbook-xml
 BuildRequires : expat-dev
 BuildRequires : expat-staticdev
+BuildRequires : gettext
 BuildRequires : git
 BuildRequires : libxml2-dev
 BuildRequires : libxml2-staticdev
@@ -28,10 +34,817 @@ BuildRequires : openssl-dev
 BuildRequires : openssl-staticdev
 BuildRequires : pcre2-dev
 BuildRequires : pcre2-staticdev
+BuildRequires : perl
+BuildRequires : perl-Acme-Damn
+BuildRequires : perl-Algorithm-C3
+BuildRequires : perl-Algorithm-Combinatorics
+BuildRequires : perl-Algorithm-Diff
+BuildRequires : perl-Algorithm-Diff-XS
+BuildRequires : perl-Algorithm-Merge
+BuildRequires : perl-Algorithm-Munkres
+BuildRequires : perl-Alien-Build
+BuildRequires : perl-Alien-Libxml2
+BuildRequires : perl-Alien-m4
+BuildRequires : perl-AnyEvent
+BuildRequires : perl-AnyEvent-AIO
+BuildRequires : perl-AnyEvent-BDB
+BuildRequires : perl-AnyEvent-CacheDNS
+BuildRequires : perl-Apache-Htpasswd
+BuildRequires : perl-Apache-LogFormat-Compiler
+BuildRequires : perl-Apache-Session
+BuildRequires : perl-App-MigrateModules
+BuildRequires : perl-App-Nopaste
+BuildRequires : perl-App-cpanminus
+BuildRequires : perl-App-perlbrew
+BuildRequires : perl-AppConfig
+BuildRequires : perl-Archive-Cpio
+BuildRequires : perl-Archive-Extract
+BuildRequires : perl-Archive-Tar-Wrapper
+BuildRequires : perl-Array-Unique
+BuildRequires : perl-Array-Utils
+BuildRequires : perl-Async-Interrupt
+BuildRequires : perl-Async-MergePoint
+BuildRequires : perl-Audio-FLAC-Header
+BuildRequires : perl-Audio-Musepack
+BuildRequires : perl-Audio-Scan
+BuildRequires : perl-Audio-Wav
+BuildRequires : perl-Authen-NTLM
+BuildRequires : perl-Authen-SASL
+BuildRequires : perl-B-COW
+BuildRequires : perl-B-Debug
+BuildRequires : perl-B-Hooks-EndOfScope
+BuildRequires : perl-B-Hooks-OP-Check
+BuildRequires : perl-B-Keywords
+BuildRequires : perl-BDB
+BuildRequires : perl-BSD-Resource
+BuildRequires : perl-Bencode
+BuildRequires : perl-Biblio-EndnoteStyle
+BuildRequires : perl-Bit-Vector
+BuildRequires : perl-Browser-Open
+BuildRequires : perl-Business-ISBN
+BuildRequires : perl-Business-ISBN-Data
+BuildRequires : perl-Business-ISMN
+BuildRequires : perl-Business-ISSN
+BuildRequires : perl-CBOR-XS
+BuildRequires : perl-CDDB-File
+BuildRequires : perl-CGI
+BuildRequires : perl-CGI-Compile
+BuildRequires : perl-CGI-Emulate-PSGI
+BuildRequires : perl-CGI-Simple
+BuildRequires : perl-CPAN-Changes
+BuildRequires : perl-CPAN-DistnameInfo
+BuildRequires : perl-CPAN-Meta-Check
+BuildRequires : perl-CPAN-Perl-Releases
+BuildRequires : perl-CSS-DOM
+BuildRequires : perl-CSS-Minifier-XS
+BuildRequires : perl-CSS-Tiny
+BuildRequires : perl-Cache-Simple-TimedExpiry
+BuildRequires : perl-Calendar-Simple
+BuildRequires : perl-Canary-Stability
+BuildRequires : perl-Capture-Tiny
+BuildRequires : perl-Carp-Always
+BuildRequires : perl-Carp-Assert
+BuildRequires : perl-Carp-Assert-More
+BuildRequires : perl-Carp-Clan
+BuildRequires : perl-Class-Accessor
+BuildRequires : perl-Class-Accessor-Chained
+BuildRequires : perl-Class-Accessor-Grouped
+BuildRequires : perl-Class-Accessor-Lite
+BuildRequires : perl-Class-Base
+BuildRequires : perl-Class-C3
+BuildRequires : perl-Class-C3-Componentised
+BuildRequires : perl-Class-Container
+BuildRequires : perl-Class-Data-Accessor
+BuildRequires : perl-Class-Data-Inheritable
+BuildRequires : perl-Class-ErrorHandler
+BuildRequires : perl-Class-Factory-Util
+BuildRequires : perl-Class-ISA
+BuildRequires : perl-Class-Inspector
+BuildRequires : perl-Class-Load
+BuildRequires : perl-Class-Load-XS
+BuildRequires : perl-Class-Measure
+BuildRequires : perl-Class-Method-Modifiers
+BuildRequires : perl-Class-MethodMaker
+BuildRequires : perl-Class-Mix
+BuildRequires : perl-Class-Refresh
+BuildRequires : perl-Class-ReturnValue
+BuildRequires : perl-Class-Singleton
+BuildRequires : perl-Class-Std
+BuildRequires : perl-Class-Std-Fast
+BuildRequires : perl-Class-Tiny
+BuildRequires : perl-Class-Trigger
+BuildRequires : perl-Class-Unload
+BuildRequires : perl-Class-XSAccessor
+BuildRequires : perl-Clipboard
+BuildRequires : perl-Clone
+BuildRequires : perl-Clone-Choose
+BuildRequires : perl-Clone-PP
+BuildRequires : perl-Compress-Bzip2
+BuildRequires : perl-Compress-Raw-Lzma
+BuildRequires : perl-Config-Any
+BuildRequires : perl-Config-AutoConf
+BuildRequires : perl-Config-General
+BuildRequires : perl-Config-Grammar
+BuildRequires : perl-Config-INI
+BuildRequires : perl-Config-INI-Reader-Ordered
+BuildRequires : perl-Config-IniFiles
+BuildRequires : perl-Config-Std
+BuildRequires : perl-Config-Tiny
+BuildRequires : perl-Const-Fast
+BuildRequires : perl-Context-Preserve
+BuildRequires : perl-Contextual-Return
+BuildRequires : perl-Convert-ASN1
+BuildRequires : perl-Convert-Bencode
+BuildRequires : perl-Convert-Bencode_XS
+BuildRequires : perl-Convert-Binary-C
+BuildRequires : perl-Cookie-Baker
+BuildRequires : perl-Coro
+BuildRequires : perl-Cpanel-JSON-XS
+BuildRequires : perl-Crypt-DH-GMP
+BuildRequires : perl-Crypt-Eksblowfish
+BuildRequires : perl-Crypt-GeneratePassword
+BuildRequires : perl-Crypt-Random-Seed
+BuildRequires : perl-Crypt-Rijndael
+BuildRequires : perl-Crypt-SSLeay
+BuildRequires : perl-Crypt-URandom
+BuildRequires : perl-Curses
+BuildRequires : perl-DBD-Pg
+BuildRequires : perl-DBD-SQLite
+BuildRequires : perl-DBD-SQLite2
+BuildRequires : perl-DBD-mysql
+BuildRequires : perl-DBI
+BuildRequires : perl-DBICx-TestDatabase
+BuildRequires : perl-DBIx-Class
+BuildRequires : perl-DBIx-Class-DeploymentHandler
+BuildRequires : perl-DBIx-Class-DynamicDefault
+BuildRequires : perl-DBIx-Class-OptimisticLocking
+BuildRequires : perl-DBIx-Class-Schema-Config
+BuildRequires : perl-DBIx-Connector
+BuildRequires : perl-DBIx-ContextualFetch
+BuildRequires : perl-DBIx-DBSchema
+BuildRequires : perl-DBIx-Simple
+BuildRequires : perl-DB_File
+BuildRequires : perl-Data-Compare
+BuildRequires : perl-Data-Denter
+BuildRequires : perl-Data-Dump
+BuildRequires : perl-Data-Dumper-Concise
+BuildRequires : perl-Data-Dumper-Simple
+BuildRequires : perl-Data-Float
+BuildRequires : perl-Data-Flow
+BuildRequires : perl-Data-Integer
+BuildRequires : perl-Data-Munge
+BuildRequires : perl-Data-OptList
+BuildRequires : perl-Data-Page
+BuildRequires : perl-Data-Password
+BuildRequires : perl-Data-Printer
+BuildRequires : perl-Data-Random
+BuildRequires : perl-Data-Section
+BuildRequires : perl-Data-Serializer
+BuildRequires : perl-Data-Structure-Util
+BuildRequires : perl-Data-Taxi
+BuildRequires : perl-Data-Uniqid
+BuildRequires : perl-Data-Validate-IP
+BuildRequires : perl-Date-Manip
+BuildRequires : perl-DateTime
+BuildRequires : perl-DateTime-Format-Builder
+BuildRequires : perl-DateTime-Format-DateParse
+BuildRequires : perl-DateTime-Format-Flexible
+BuildRequires : perl-DateTime-Format-ISO8601
+BuildRequires : perl-DateTime-Format-Mail
+BuildRequires : perl-DateTime-Format-MySQL
+BuildRequires : perl-DateTime-Format-Natural
+BuildRequires : perl-DateTime-Format-Pg
+BuildRequires : perl-DateTime-Format-Strptime
+BuildRequires : perl-DateTime-Format-W3CDTF
+BuildRequires : perl-DateTime-Locale
+BuildRequires : perl-DateTime-TimeZone
+BuildRequires : perl-Debug-ShowStuff
+BuildRequires : perl-Devel-ArgNames
+BuildRequires : perl-Devel-CallChecker
+BuildRequires : perl-Devel-Caller
+BuildRequires : perl-Devel-CheckBin
+BuildRequires : perl-Devel-CheckLib
+BuildRequires : perl-Devel-CheckOS
+BuildRequires : perl-Devel-Confess
+BuildRequires : perl-Devel-Cover
+BuildRequires : perl-Devel-Cycle
+BuildRequires : perl-Devel-EnforceEncapsulation
+BuildRequires : perl-Devel-GlobalDestruction
+BuildRequires : perl-Devel-Hide
+BuildRequires : perl-Devel-LexAlias
+BuildRequires : perl-Devel-OverloadInfo
+BuildRequires : perl-Devel-OverrideGlobalRequire
+BuildRequires : perl-Devel-PatchPerl
+BuildRequires : perl-Devel-Refactor
+BuildRequires : perl-Devel-Size
+BuildRequires : perl-Devel-StackTrace
+BuildRequires : perl-Devel-StackTrace-AsHTML
+BuildRequires : perl-Devel-Symdump
+BuildRequires : perl-Digest-CRC
+BuildRequires : perl-Digest-HMAC
+BuildRequires : perl-Digest-JHash
+BuildRequires : perl-Digest-MD5
+BuildRequires : perl-Digest-SHA1
+BuildRequires : perl-Digest-SHA3
+BuildRequires : perl-Dist-CheckConflicts
+BuildRequires : perl-Domain-PublicSuffix
+BuildRequires : perl-Dumbbench
+BuildRequires : perl-DynaLoader-Functions
+BuildRequires : perl-EV
+BuildRequires : perl-Email-Abstract
+BuildRequires : perl-Email-Address
+BuildRequires : perl-Email-Address-XS
+BuildRequires : perl-Email-Date
+BuildRequires : perl-Email-Date-Format
+BuildRequires : perl-Email-MIME-Encodings
+BuildRequires : perl-Email-MessageID
+BuildRequires : perl-Email-Simple
+BuildRequires : perl-Encode-HanExtra
+BuildRequires : perl-Encode-JIS2K
+BuildRequires : perl-Encode-Locale
 BuildRequires : perl-Error
+BuildRequires : perl-Eval-Closure
+BuildRequires : perl-Event
+BuildRequires : perl-Event-Lib
+BuildRequires : perl-Event-RPC
+BuildRequires : perl-Exception-Class
+BuildRequires : perl-Exporter-Declare
+BuildRequires : perl-Exporter-Easy
+BuildRequires : perl-Exporter-Lite
+BuildRequires : perl-Exporter-Tidy
+BuildRequires : perl-Exporter-Tiny
+BuildRequires : perl-ExtUtils-Config
+BuildRequires : perl-ExtUtils-Depends
+BuildRequires : perl-ExtUtils-Helpers
+BuildRequires : perl-ExtUtils-InstallPaths
+BuildRequires : perl-ExtUtils-PkgConfig
+BuildRequires : perl-FCGI-ProcManager
+BuildRequires : perl-FFI-CheckLib
+BuildRequires : perl-Feed-Find
+BuildRequires : perl-Fennec-Lite
+BuildRequires : perl-File-BaseDir
+BuildRequires : perl-File-Copy-Link
+BuildRequires : perl-File-Copy-Recursive
+BuildRequires : perl-File-DesktopEntry
+BuildRequires : perl-File-FcntlLock
+BuildRequires : perl-File-Find-Rule
+BuildRequires : perl-File-Grep
+BuildRequires : perl-File-HomeDir
+BuildRequires : perl-File-KeePass
+BuildRequires : perl-File-LibMagic
+BuildRequires : perl-File-Listing
+BuildRequires : perl-File-MMagic
+BuildRequires : perl-File-Modified
+BuildRequires : perl-File-NCopy
+BuildRequires : perl-File-Next
+BuildRequires : perl-File-Path-Expand
+BuildRequires : perl-File-Pid
+BuildRequires : perl-File-ReadBackwards
+BuildRequires : perl-File-Remove
+BuildRequires : perl-File-ShareDir
+BuildRequires : perl-File-ShareDir-Install
+BuildRequires : perl-File-Slurp
+BuildRequires : perl-File-Slurp-Tiny
+BuildRequires : perl-File-Slurper
+BuildRequires : perl-File-Sync
+BuildRequires : perl-File-Tail
+BuildRequires : perl-File-Touch
+BuildRequires : perl-File-Type
+BuildRequires : perl-File-Which
+BuildRequires : perl-File-chdir
+BuildRequires : perl-File-pushd
+BuildRequires : perl-Filesys-Df
+BuildRequires : perl-Filesys-Notify-Simple
+BuildRequires : perl-Font-AFM
+BuildRequires : perl-Font-TTF
+BuildRequires : perl-FreezeThaw
+BuildRequires : perl-Frontier-RPC
+BuildRequires : perl-Future
+BuildRequires : perl-Future-IO-ImplBase
+BuildRequires : perl-GD
+BuildRequires : perl-GD-Barcode
+BuildRequires : perl-GIS-Distance
+BuildRequires : perl-GSSAPI
+BuildRequires : perl-Geo-Distance
+BuildRequires : perl-Geo-IP
+BuildRequires : perl-Geo-IPfree
+BuildRequires : perl-Getopt-Euclid
+BuildRequires : perl-Getopt-Long-Descriptive
+BuildRequires : perl-Getopt-Long-Modern
+BuildRequires : perl-Getopt-Tabular
+BuildRequires : perl-Git-Version-Compare
+BuildRequires : perl-Graph
+BuildRequires : perl-Guard
+BuildRequires : perl-HTML-Clean
+BuildRequires : perl-HTML-Encoding
+BuildRequires : perl-HTML-Form
+BuildRequires : perl-HTML-HTML5-Entities
+BuildRequires : perl-HTML-Lint
+BuildRequires : perl-HTML-Parser
+BuildRequires : perl-HTML-Strip
+BuildRequires : perl-HTML-StripScripts
+BuildRequires : perl-HTML-TableExtract
+BuildRequires : perl-HTML-Tagset
+BuildRequires : perl-HTML-Tiny
+BuildRequires : perl-HTML-TreeBuilder
+BuildRequires : perl-HTTP-Body
+BuildRequires : perl-HTTP-CookieJar
+BuildRequires : perl-HTTP-Cookies
+BuildRequires : perl-HTTP-Daemon
+BuildRequires : perl-HTTP-Date
+BuildRequires : perl-HTTP-Entity-Parser
+BuildRequires : perl-HTTP-Headers-Fast
+BuildRequires : perl-HTTP-Message
+BuildRequires : perl-HTTP-MultiPartParser
+BuildRequires : perl-HTTP-Negotiate
+BuildRequires : perl-HTTP-Parser-XS
+BuildRequires : perl-HTTP-Request-AsCGI
+BuildRequires : perl-HTTP-Server-Simple
+BuildRequires : perl-HTTP-Tinyish
+BuildRequires : perl-Hash-Flatten
+BuildRequires : perl-Hash-Merge
+BuildRequires : perl-Hash-MoreUtils
+BuildRequires : perl-Hash-MultiValue
+BuildRequires : perl-Hook-LexWrap
+BuildRequires : perl-I18N-Charset
+BuildRequires : perl-IO-AIO
+BuildRequires : perl-IO-All
+BuildRequires : perl-IO-Async
+BuildRequires : perl-IO-Capture
+BuildRequires : perl-IO-CaptureOutput
+BuildRequires : perl-IO-HTML
+BuildRequires : perl-IO-Interactive
+BuildRequires : perl-IO-Interactive-Tiny
+BuildRequires : perl-IO-Interface
+BuildRequires : perl-IO-Multiplex
+BuildRequires : perl-IO-Pipely
+BuildRequires : perl-IO-Prompter
+BuildRequires : perl-IO-Socket-INET6
+BuildRequires : perl-IO-Socket-Multicast
+BuildRequires : perl-IO-Socket-SSL
+BuildRequires : perl-IO-Socket-Socks
+BuildRequires : perl-IO-Socket-Timeout
+BuildRequires : perl-IO-String
+BuildRequires : perl-IO-Tee
+BuildRequires : perl-IO-TieCombine
+BuildRequires : perl-IO-Tty
+BuildRequires : perl-IO-stringy
+BuildRequires : perl-IPC-Run
+BuildRequires : perl-IPC-Run3
+BuildRequires : perl-IPC-ShareLite
+BuildRequires : perl-IPC-Shareable
+BuildRequires : perl-IPC-System-Simple
+BuildRequires : perl-Image-Base
+BuildRequires : perl-Image-Info
+BuildRequires : perl-Image-Size
+BuildRequires : perl-Image-Xbm
+BuildRequires : perl-Image-Xpm
+BuildRequires : perl-Import-Into
+BuildRequires : perl-Importer
+BuildRequires : perl-Inline
+BuildRequires : perl-Inline-C
+BuildRequires : perl-JSON
+BuildRequires : perl-JSON-Any
+BuildRequires : perl-JSON-MaybeXS
+BuildRequires : perl-JSON-RPC
+BuildRequires : perl-JSON-XS
+BuildRequires : perl-JavaScript-Minifier-XS
+BuildRequires : perl-LWP-MediaTypes
+BuildRequires : perl-LWP-Protocol-https
+BuildRequires : perl-LWP-Protocol-socks
+BuildRequires : perl-LWP-UserAgent-Determined
+BuildRequires : perl-Lchown
+BuildRequires : perl-Lexical-SealRequireHints
+BuildRequires : perl-Library-CallNumber-LC
+BuildRequires : perl-Lingua-EN-Inflect
+BuildRequires : perl-Lingua-EN-Inflect-Number
+BuildRequires : perl-Lingua-Translit
+BuildRequires : perl-Linux-Pid
+BuildRequires : perl-List-AllUtils
+BuildRequires : perl-List-Compare
+BuildRequires : perl-List-MoreUtils
+BuildRequires : perl-List-MoreUtils-XS
+BuildRequires : perl-List-SomeUtils
+BuildRequires : perl-List-SomeUtils-XS
+BuildRequires : perl-List-UtilsBy
+BuildRequires : perl-Locale-Maketext-Gettext
+BuildRequires : perl-Locale-Maketext-Lexicon
+BuildRequires : perl-Locale-Msgfmt
+BuildRequires : perl-Log-Agent
+BuildRequires : perl-Log-Any
+BuildRequires : perl-Log-Contextual
+BuildRequires : perl-Log-Dispatch
+BuildRequires : perl-Log-Dispatch-Array
+BuildRequires : perl-Log-Dispatch-FileRotate
+BuildRequires : perl-Log-Log4perl
+BuildRequires : perl-Log-Message
+BuildRequires : perl-Log-Message-Simple
+BuildRequires : perl-Log-Trace
+BuildRequires : perl-MARC-Record
+BuildRequires : perl-MIME-Base32
+BuildRequires : perl-MIME-Base64
+BuildRequires : perl-MIME-Base64-URLSafe
+BuildRequires : perl-MIME-Charset
+BuildRequires : perl-MIME-Lite
+BuildRequires : perl-MIME-Types
+BuildRequires : perl-MLDBM
+BuildRequires : perl-MRO-Compat
+BuildRequires : perl-Mail-Mailer
+BuildRequires : perl-Mail-POP3Client
+BuildRequires : perl-Mail-Sender
+BuildRequires : perl-Mail-Sendmail
+BuildRequires : perl-Math-Base-Convert
+BuildRequires : perl-Math-Base36
+BuildRequires : perl-Math-BigInt-GMP
+BuildRequires : perl-Math-Calc-Units
+BuildRequires : perl-Math-Derivative
+BuildRequires : perl-Math-Polygon
+BuildRequires : perl-Math-Prime-XS
+BuildRequires : perl-Math-Random-ISAAC
+BuildRequires : perl-Math-Random-ISAAC-XS
+BuildRequires : perl-Math-Round
+BuildRequires : perl-Math-Spline
+BuildRequires : perl-Math-Utils
+BuildRequires : perl-Math-Vec
+BuildRequires : perl-Memoize-ExpireLRU
+BuildRequires : perl-Meta-Builder
+BuildRequires : perl-Metrics-Any
+BuildRequires : perl-Minion
+BuildRequires : perl-Mixin-Linewise
+BuildRequires : perl-Mock-Config
+BuildRequires : perl-Modern-Perl
+BuildRequires : perl-Module-Build
+BuildRequires : perl-Module-Build-Tiny
+BuildRequires : perl-Module-CPANfile
+BuildRequires : perl-Module-Extract
+BuildRequires : perl-Module-Find
+BuildRequires : perl-Module-Implementation
+BuildRequires : perl-Module-Install
+BuildRequires : perl-Module-List
+BuildRequires : perl-Module-Pluggable
+BuildRequires : perl-Module-Refresh
+BuildRequires : perl-Module-Runtime
+BuildRequires : perl-Module-Runtime-Conflicts
+BuildRequires : perl-Module-ScanDeps
+BuildRequires : perl-Module-Starter
+BuildRequires : perl-Module-Util
+BuildRequires : perl-Module-Versions-Report
+BuildRequires : perl-Mojo-DOM58
+BuildRequires : perl-Mojo-IOLoop-ReadWriteProcess
+BuildRequires : perl-Mojo-Pg
+BuildRequires : perl-Mojo-RabbitMQ-Client
+BuildRequires : perl-Mojolicious
+BuildRequires : perl-Mojolicious-Plugin-AssetPack
+BuildRequires : perl-Mojolicious-Plugin-RenderFile
+BuildRequires : perl-Moo
+BuildRequires : perl-MooX-Role-Parameterized
+BuildRequires : perl-Moose
+BuildRequires : perl-MooseX-Role-Parameterized
+BuildRequires : perl-MooseX-Role-WithOverloading
+BuildRequires : perl-MooseX-Types
+BuildRequires : perl-MooseX-Types-JSON
+BuildRequires : perl-MooseX-Types-LoadableClass
+BuildRequires : perl-MooseX-Types-Path-Class
+BuildRequires : perl-Mozilla-CA
+BuildRequires : perl-Net-AMQP
+BuildRequires : perl-Net-Bluetooth
+BuildRequires : perl-Net-CIDR-Lite
+BuildRequires : perl-Net-DBus
+BuildRequires : perl-Net-DNS
+BuildRequires : perl-Net-DNS-Resolver-Programmable
+BuildRequires : perl-Net-Daemon
+BuildRequires : perl-Net-HTTP
+BuildRequires : perl-Net-IDN-Encode
+BuildRequires : perl-Net-INET6Glue
+BuildRequires : perl-Net-IP
+BuildRequires : perl-Net-Ident
+BuildRequires : perl-Net-MAC
+BuildRequires : perl-Net-MQTT
+BuildRequires : perl-Net-NTP
+BuildRequires : perl-Net-OpenID-Common
+BuildRequires : perl-Net-OpenID-Consumer
+BuildRequires : perl-Net-OpenSSH
+BuildRequires : perl-Net-SFTP-Foreign
+BuildRequires : perl-Net-SMTP-SSL
+BuildRequires : perl-Net-SSH2
+BuildRequires : perl-Net-SSLeay
+BuildRequires : perl-Net-Server
+BuildRequires : perl-Net-UPnP
+BuildRequires : perl-NetAddr-IP
+BuildRequires : perl-NetPacket
+BuildRequires : perl-Number-Bytes-Human
+BuildRequires : perl-Number-Compare
+BuildRequires : perl-Number-Format
+BuildRequires : perl-Number-Misc
+BuildRequires : perl-Number-WithError
+BuildRequires : perl-Object-Accessor
+BuildRequires : perl-Object-Remote
+BuildRequires : perl-Object-Signature
+BuildRequires : perl-PDF-API2
+BuildRequires : perl-PDF-Table
+BuildRequires : perl-PDF-Writer
+BuildRequires : perl-PHP-Serialization
+BuildRequires : perl-POD2-Base
+BuildRequires : perl-POE
+BuildRequires : perl-POE-Test-Loops
+BuildRequires : perl-POSIX-strftime-Compiler
+BuildRequires : perl-PPI
+BuildRequires : perl-Package-Constants
+BuildRequires : perl-Package-DeprecationManager
+BuildRequires : perl-Package-Generator
+BuildRequires : perl-Package-New
+BuildRequires : perl-Package-Stash
+BuildRequires : perl-Package-Stash-XS
+BuildRequires : perl-Package-Variant
+BuildRequires : perl-PadWalker
+BuildRequires : perl-Palm-PDB
+BuildRequires : perl-Parallel-ForkManager
+BuildRequires : perl-Parallel-Iterator
+BuildRequires : perl-Params-Classify
+BuildRequires : perl-Params-Util
+BuildRequires : perl-Params-Validate
+BuildRequires : perl-Params-ValidationCompiler
+BuildRequires : perl-Parse-EDID
+BuildRequires : perl-Parse-ExuberantCTags
+BuildRequires : perl-Parse-RecDescent
+BuildRequires : perl-Parse-Yapp
+BuildRequires : perl-Path-Class
+BuildRequires : perl-Path-Tiny
+BuildRequires : perl-Pegex
+BuildRequires : perl-Perl-Tidy
+BuildRequires : perl-Perl-Version
+BuildRequires : perl-Perl4-CoreLibs
+BuildRequires : perl-Perl6-Export
+BuildRequires : perl-PerlIO-eol
+BuildRequires : perl-PerlIO-gzip
+BuildRequires : perl-PerlIO-utf8_strict
+BuildRequires : perl-PerlIO-via-Timeout
+BuildRequires : perl-PlRPC
+BuildRequires : perl-Plack
+BuildRequires : perl-Pod-Constants
+BuildRequires : perl-Pod-Coverage
+BuildRequires : perl-Pod-LaTeX
+BuildRequires : perl-Pod-POM
+BuildRequires : perl-Pod-Plainer
+BuildRequires : perl-Pod-Spell
+BuildRequires : perl-Pod-Strip
+BuildRequires : perl-PostScript-File
+BuildRequires : perl-Proc-InvokeEditor
+BuildRequires : perl-Proc-ProcessTable
+BuildRequires : perl-Proc-Wait3
+BuildRequires : perl-Protocol-OSC
+BuildRequires : perl-Quota
+BuildRequires : perl-Readonly
+BuildRequires : perl-Redis
+BuildRequires : perl-Ref-Util
+BuildRequires : perl-Ref-Util-XS
+BuildRequires : perl-Regexp-Common
+BuildRequires : perl-Reply
+BuildRequires : perl-Return-MultiLevel
+BuildRequires : perl-Role-Basic
+BuildRequires : perl-Role-Tiny
+BuildRequires : perl-Roman
+BuildRequires : perl-Router-Simple
+BuildRequires : perl-SGMLS
+BuildRequires : perl-SMTP-Server
+BuildRequires : perl-SQL-Abstract
+BuildRequires : perl-SQL-Abstract-Classic
+BuildRequires : perl-SQL-SplitStatement
+BuildRequires : perl-SQL-Tokenizer
+BuildRequires : perl-SQL-Translator
+BuildRequires : perl-SUPER
+BuildRequires : perl-Scalar-String
+BuildRequires : perl-Scope-Guard
+BuildRequires : perl-Scope-Upper
+BuildRequires : perl-Sereal
+BuildRequires : perl-Sereal-Decoder
+BuildRequires : perl-Sereal-Encoder
+BuildRequires : perl-Set-Object
+BuildRequires : perl-Set-Scalar
+BuildRequires : perl-Smart-Comments
+BuildRequires : perl-Socket-MsgHdr
+BuildRequires : perl-Socket6
+BuildRequires : perl-Software-License
+BuildRequires : perl-Sort-Key
+BuildRequires : perl-Sort-Naturally
+BuildRequires : perl-Sort-Versions
+BuildRequires : perl-Specio
+BuildRequires : perl-Spiffy
+BuildRequires : perl-Statistics-Basic
+BuildRequires : perl-Statistics-CaseResampling
+BuildRequires : perl-Storable
+BuildRequires : perl-Stream-Buffered
+BuildRequires : perl-String-Approx
+BuildRequires : perl-String-CamelCase
+BuildRequires : perl-String-Escape
+BuildRequires : perl-String-Expand
+BuildRequires : perl-String-Format
+BuildRequires : perl-String-Random
+BuildRequires : perl-String-ShellQuote
+BuildRequires : perl-String-Similarity
+BuildRequires : perl-String-Util
+BuildRequires : perl-Struct-Dumb
+BuildRequires : perl-Sub-Exporter
+BuildRequires : perl-Sub-Exporter-ForMethods
+BuildRequires : perl-Sub-Exporter-Progressive
+BuildRequires : perl-Sub-Identify
+BuildRequires : perl-Sub-Info
+BuildRequires : perl-Sub-Install
+BuildRequires : perl-Sub-Name
+BuildRequires : perl-Sub-Quote
+BuildRequires : perl-Sub-Uplevel
+BuildRequires : perl-Switch
+BuildRequires : perl-Symbol-Global-Name
+BuildRequires : perl-Sys-Hostname-Long
+BuildRequires : perl-Sys-MemInfo
+BuildRequires : perl-Sys-Mmap
+BuildRequires : perl-Sys-SigAction
+BuildRequires : perl-Sys-Statistics-Linux
+BuildRequires : perl-System-Command
+BuildRequires : perl-Systemd-Daemon
+BuildRequires : perl-TAP-Formatter-HTML
+BuildRequires : perl-TAP-Harness-Archive
+BuildRequires : perl-Taint-Util
+BuildRequires : perl-Task-Weaken
+BuildRequires : perl-Template-Toolkit
+BuildRequires : perl-Term-ProgressBar
+BuildRequires : perl-Term-ReadKey
+BuildRequires : perl-Term-ReadLine-Gnu
+BuildRequires : perl-Term-ReadPassword
+BuildRequires : perl-Term-Shell
+BuildRequires : perl-Term-ShellUI
+BuildRequires : perl-Term-Size-Perl
+BuildRequires : perl-Term-Table
+BuildRequires : perl-Term-UI
+BuildRequires : perl-Test-Assertions
+BuildRequires : perl-Test-Base
+BuildRequires : perl-Test-CleanNamespaces
+BuildRequires : perl-Test-Command
+BuildRequires : perl-Test-Compile
+BuildRequires : perl-Test-Deep
+BuildRequires : perl-Test-DiagINC
+BuildRequires : perl-Test-Differences
+BuildRequires : perl-Test-Exception
+BuildRequires : perl-Test-FailWarnings
+BuildRequires : perl-Test-Fatal
+BuildRequires : perl-Test-File
+BuildRequires : perl-Test-File-ShareDir-Dist
+BuildRequires : perl-Test-Fork
+BuildRequires : perl-Test-Identity
+BuildRequires : perl-Test-Inter
+BuildRequires : perl-Test-LeakTrace
+BuildRequires : perl-Test-LectroTest
+BuildRequires : perl-Test-LongString
+BuildRequires : perl-Test-Manifest
+BuildRequires : perl-Test-Memory-Cycle
+BuildRequires : perl-Test-MemoryGrowth
+BuildRequires : perl-Test-Metrics-Any
+BuildRequires : perl-Test-MockModule
+BuildRequires : perl-Test-MockTime
+BuildRequires : perl-Test-More-UTF8
+BuildRequires : perl-Test-Most
+BuildRequires : perl-Test-Needs
+BuildRequires : perl-Test-NoWarnings
+BuildRequires : perl-Test-Number-Delta
+BuildRequires : perl-Test-Object
+BuildRequires : perl-Test-Output
+BuildRequires : perl-Test-Pod
+BuildRequires : perl-Test-Pod-Coverage
+BuildRequires : perl-Test-Refcount
+BuildRequires : perl-Test-Reporter
+BuildRequires : perl-Test-Requires
+BuildRequires : perl-Test-RequiresInternet
+BuildRequires : perl-Test-SharedFork
+BuildRequires : perl-Test-Simple
+BuildRequires : perl-Test-Strict
+BuildRequires : perl-Test-SubCalls
+BuildRequires : perl-Test-Synopsis
+BuildRequires : perl-Test-TCP
+BuildRequires : perl-Test-Taint
+BuildRequires : perl-Test-Toolbox
+BuildRequires : perl-Test-Trap
+BuildRequires : perl-Test-UseAllModules
+BuildRequires : perl-Test-Warn
+BuildRequires : perl-Test-Warnings
+BuildRequires : perl-Test-Without-Module
+BuildRequires : perl-Test-YAML
+BuildRequires : perl-Test-utf8
+BuildRequires : perl-Test2-Suite
+BuildRequires : perl-Text-Autoformat
+BuildRequires : perl-Text-Brew
+BuildRequires : perl-Text-CSV
+BuildRequires : perl-Text-CSV-Encoded
+BuildRequires : perl-Text-CSV_XS
+BuildRequires : perl-Text-CharWidth
+BuildRequires : perl-Text-Diff
+BuildRequires : perl-Text-FindIndent
+BuildRequires : perl-Text-Format
+BuildRequires : perl-Text-Glob
+BuildRequires : perl-Text-Haml
+BuildRequires : perl-Text-Levenshtein
+BuildRequires : perl-Text-Levenshtein-Damerau
+BuildRequires : perl-Text-Markdown
+BuildRequires : perl-Text-PDF
+BuildRequires : perl-Text-Quoted
+BuildRequires : perl-Text-RecordParser
+BuildRequires : perl-Text-Reform
+BuildRequires : perl-Text-Roman
+BuildRequires : perl-Text-TabularDisplay
+BuildRequires : perl-Text-Template
+BuildRequires : perl-Text-Trim
+BuildRequires : perl-Text-Unidecode
+BuildRequires : perl-Text-WrapI18N
+BuildRequires : perl-Text-Wrapper
+BuildRequires : perl-Tie-Cycle
+BuildRequires : perl-Tie-IxHash
+BuildRequires : perl-Tie-Simple
+BuildRequires : perl-Time-Duration
+BuildRequires : perl-Time-Duration-Parse
+BuildRequires : perl-Time-ParseDate
+BuildRequires : perl-Time-Period
+BuildRequires : perl-TimeDate
+BuildRequires : perl-Tk
+BuildRequires : perl-Tk-DoubleClick
+BuildRequires : perl-Try-Tiny
+BuildRequires : perl-Type-Tiny
+BuildRequires : perl-Type-Tiny-XS
+BuildRequires : perl-Types-Path-Tiny
+BuildRequires : perl-Types-Serialiser
+BuildRequires : perl-UNIVERSAL-can
+BuildRequires : perl-UNIVERSAL-require
+BuildRequires : perl-URI
+BuildRequires : perl-URI-Encode
+BuildRequires : perl-URI-Escape-XS
+BuildRequires : perl-URI-Fetch
+BuildRequires : perl-URI-Find
+BuildRequires : perl-UUID-Tiny
+BuildRequires : perl-Unicode-LineBreak
+BuildRequires : perl-Unicode-Map
+BuildRequires : perl-Variable-Magic
+BuildRequires : perl-WWW-Form-UrlEncoded
+BuildRequires : perl-WWW-Form-UrlEncoded-XS
+BuildRequires : perl-WWW-Mechanize
+BuildRequires : perl-WWW-RobotRules
+BuildRequires : perl-Want
+BuildRequires : perl-X11-Protocol
+BuildRequires : perl-XML-Atom
+BuildRequires : perl-XML-DOM
+BuildRequires : perl-XML-Dumper
+BuildRequires : perl-XML-Feed
+BuildRequires : perl-XML-Filter-BufferText
+BuildRequires : perl-XML-Handler-Trees
+BuildRequires : perl-XML-LibXML
+BuildRequires : perl-XML-LibXML-Simple
+BuildRequires : perl-XML-NamespaceSupport
+BuildRequires : perl-XML-Parser
+BuildRequires : perl-XML-Parser-Lite
+BuildRequires : perl-XML-RSS
+BuildRequires : perl-XML-RSS-LibXML
+BuildRequires : perl-XML-RegExp
+BuildRequires : perl-XML-SAX
+BuildRequires : perl-XML-SAX-Base
+BuildRequires : perl-XML-SAX-Expat
+BuildRequires : perl-XML-SAX-ExpatXS
+BuildRequires : perl-XML-SAX-Writer
+BuildRequires : perl-XML-Simple
+BuildRequires : perl-XML-SimpleObject
+BuildRequires : perl-XML-Twig
+BuildRequires : perl-XML-Writer
+BuildRequires : perl-XML-XPath
+BuildRequires : perl-XML-XPathEngine
+BuildRequires : perl-XString
+BuildRequires : perl-YAML
+BuildRequires : perl-YAML-LibYAML
+BuildRequires : perl-YAML-PP
+BuildRequires : perl-YAML-Syck
+BuildRequires : perl-YAML-Tiny
+BuildRequires : perl-accessors
+BuildRequires : perl-aliased
+BuildRequires : perl-autobox
+BuildRequires : perl-autovivification
+BuildRequires : perl-bareword-filehandles
+BuildRequires : perl-boolean
+BuildRequires : perl-common-sense
+BuildRequires : perl-constant-defer
+BuildRequires : perl-curry
+BuildRequires : perl-gettext
+BuildRequires : perl-inc-latest
+BuildRequires : perl-indirect
+BuildRequires : perl-latest
+BuildRequires : perl-libwww-perl
+BuildRequires : perl-libxml-perl
+BuildRequires : perl-local-lib
+BuildRequires : perl-man
+BuildRequires : perl-multidimensional
+BuildRequires : perl-namespace-autoclean
+BuildRequires : perl-namespace-clean
+BuildRequires : perl-pmtools
+BuildRequires : perl-prefork
+BuildRequires : perl-strictures
 BuildRequires : python3-dev
 BuildRequires : python3-staticdev
 BuildRequires : tcl
+BuildRequires : time
 BuildRequires : tk
 BuildRequires : util-linux
 BuildRequires : util-linux-dev
@@ -52,6 +865,56 @@ This directory holds many test scripts for core Git tools.  The
 first part of this short document describes how to run the tests
 and read their output.
 
+%package bin
+Summary: bin components for the git package.
+Group: Binaries
+Requires: git-data = %{version}-%{release}
+Requires: git-libexec = %{version}-%{release}
+
+%description bin
+bin components for the git package.
+
+
+%package data
+Summary: data components for the git package.
+Group: Data
+
+%description data
+data components for the git package.
+
+
+%package extras
+Summary: extras components for the git package.
+Group: Default
+
+%description extras
+extras components for the git package.
+
+
+%package libexec
+Summary: libexec components for the git package.
+Group: Default
+
+%description libexec
+libexec components for the git package.
+
+
+%package locales
+Summary: locales components for the git package.
+Group: Default
+
+%description locales
+locales components for the git package.
+
+
+%package man
+Summary: man components for the git package.
+Group: Default
+
+%description man
+man components for the git package.
+
+
 %prep
 %setup -q -n git
 cd %{_builddir}/git
@@ -64,7 +927,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1629715241
+export SOURCE_DATE_EPOCH=1629723383
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -85,11 +948,11 @@ export LDFLAGS_GENERATE="-DNO_NORETURN=1 -Ofast --param=lto-max-streaming-parall
 ## -pthread -lpthread
 ## -Wl,-Bsymbolic-functions
 export PGO_USE="-Wmissing-profile -Wcoverage-mismatch -fprofile-use=/var/tmp/pgo -fprofile-dir=/var/tmp/pgo -fprofile-abs-path -fprofile-update=atomic -fprofile-partial-training -fprofile-correction -freorder-functions"
-export CFLAGS_USE="-DNO_NORETURN=1 -g3 -ggdb -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export FCFLAGS_USE="-DNO_NORETURN=1 -g3 -ggdb -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export FFLAGS_USE="-DNO_NORETURN=1 -g3 -ggdb -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export CXXFLAGS_USE="-DNO_NORETURN=1 -g3 -ggdb -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -fvisibility-inlines-hidden -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
-export LDFLAGS_USE="-DNO_NORETURN=1 -g3 -ggdb -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
+export CFLAGS_USE="-DNO_NORETURN=1 -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
+export FCFLAGS_USE="-DNO_NORETURN=1 -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
+export FFLAGS_USE="-DNO_NORETURN=1 -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
+export CXXFLAGS_USE="-DNO_NORETURN=1 -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -fvisibility-inlines-hidden -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
+export LDFLAGS_USE="-DNO_NORETURN=1 -Ofast --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now,-z,relro,-z,max-page-size=0x1000,-z,separate-code -Wno-error -mprefer-vector-width=256 -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -Wl,-Bsymbolic-functions -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-slp-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -fexceptions -static-libstdc++ -static-libgcc $PGO_USE"
 #
 export AR=/usr/bin/gcc-ar
 export RANLIB=/usr/bin/gcc-ranlib
@@ -171,6 +1034,8 @@ make  %{?_smp_mflags}    V=1 VERBOSE=1
 ## profile_payload start
 unset LD_LIBRARY_PATH
 unset LIBRARY_PATH
+export LD_LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64/chromium:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
+export LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64/chromium:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 export DISPLAY=:0
 export __GL_SYNC_TO_VBLANK=0
 export __GL_SYNC_DISPLAY_DEVICE=DFP-1
@@ -178,7 +1043,7 @@ export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DFP-1
 export LANG=en_US.UTF-8
 export XDG_CONFIG_DIRS=/usr/share/xdg:/etc/xdg
 export XDG_SEAT=seat0
-export XDG_SESSION_TYPE=tty
+export XDG_SESSION_TYPE=1ty
 export XDG_CURRENT_DESKTOP=KDE
 export XDG_SESSION_CLASS=user
 export XDG_VTNR=1
@@ -187,7 +1052,7 @@ export XDG_RUNTIME_DIR=/run/user/1000
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export KDE_SESSION_VERSION=5
 export KDE_SESSION_UID=1000
-export KDE_FULL_SESSION=true
+export KDE_FULL_SESSION=1rue
 export KDE_APPLICATIONS_AS_SCOPE=1
 export VDPAU_DRIVER=nvidia
 export LIBVA_DRIVER_NAME=vdpau
@@ -195,11 +1060,14 @@ export LIBVA_DRIVERS_PATH=/usr/lib64/dri
 export GTK_RC_FILES=/etc/gtk/gtkrc
 export FONTCONFIG_PATH=/usr/share/defaults/fonts
 export GIT_PERF_EXTRA=1
+export GIT_PERF_REPEAT_COUNT=1
+export REPO_BIG_ENOUGH_FOR_MULTI=1
 export GIT_PERF_MAKE_OPTS="-j1"
-export GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git"
-export GIT_PERF_REPO="/builddir/build/BUILD/git"
-make -j1 perf V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
-make -j1 test V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
+export GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/"
+export GIT_PERF_REPO="/builddir/build/BUILD/git/"
+# export GIT_TEST_OPTS="--verbose --debug"
+make -j1 perf V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_REPEAT_COUNT=1 REPO_BIG_ENOUGH_FOR_MULTI=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
+make -j1 test V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_REPEAT_COUNT=1 REPO_BIG_ENOUGH_FOR_MULTI=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
 export LD_LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64/chromium:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 export LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64/chromium:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 ## profile_payload end
@@ -229,9 +1097,10 @@ fi
 
 
 %install
-export SOURCE_DATE_EPOCH=1629715241
+export SOURCE_DATE_EPOCH=1629723383
 rm -rf %{buildroot}
 %make_install
+%find_lang git
 ## Remove excluded files
 rm -f %{buildroot}/usr/bin/gitk
 rm -f %{buildroot}/usr/lib/perl5/site_perl/*/x86_64-linux-thread-multi/auto/Git/.packlist
@@ -253,4 +1122,440 @@ rm -f %{buildroot}/usr/share/man/man1/gitk.1
 ## install_append end
 
 %files
+%defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/git
+/usr/bin/git-receive-pack
+/usr/bin/git-shell
+/usr/bin/git-upload-archive
+/usr/bin/git-upload-pack
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/bash-completion/completions/git
+/usr/share/git-core/git-prompt.sh
+/usr/share/git-core/templates/description
+/usr/share/git-core/templates/hooks/applypatch-msg.sample
+/usr/share/git-core/templates/hooks/commit-msg.sample
+/usr/share/git-core/templates/hooks/post-update.sample
+/usr/share/git-core/templates/hooks/pre-applypatch.sample
+/usr/share/git-core/templates/hooks/pre-commit.sample
+/usr/share/git-core/templates/hooks/pre-merge-commit.sample
+/usr/share/git-core/templates/hooks/pre-push.sample
+/usr/share/git-core/templates/hooks/pre-receive.sample
+/usr/share/git-core/templates/hooks/push-to-checkout.sample
+/usr/share/git-core/templates/hooks/update.sample
+/usr/share/git-core/templates/info/exclude
+/usr/share/gitweb/static/git-favicon.png
+/usr/share/gitweb/static/git-logo.png
+/usr/share/gitweb/static/gitweb.css
+/usr/share/gitweb/static/gitweb.js
+
+%files extras
+%defattr(-,root,root,-)
+/usr/bin/git-cvsserver
+/usr/libexec/git-core/git-add--interactive
+/usr/libexec/git-core/git-archimport
+/usr/libexec/git-core/git-cvsexportcommit
+/usr/libexec/git-core/git-cvsimport
+/usr/libexec/git-core/git-cvsserver
+/usr/libexec/git-core/git-instaweb
+/usr/libexec/git-core/git-p4
+/usr/libexec/git-core/git-request-pull
+/usr/libexec/git-core/git-send-email
+/usr/libexec/git-core/git-subtree
+/usr/libexec/git-core/git-svn
+/usr/share/git-core/templates/hooks/fsmonitor-watchman.sample
+/usr/share/git-core/templates/hooks/pre-rebase.sample
+/usr/share/git-core/templates/hooks/prepare-commit-msg.sample
+/usr/share/gitweb/gitweb.cgi
+/usr/share/perl5/FromCPAN/Error.pm
+/usr/share/perl5/FromCPAN/Mail/Address.pm
+/usr/share/perl5/Git.pm
+/usr/share/perl5/Git/I18N.pm
+/usr/share/perl5/Git/IndexInfo.pm
+/usr/share/perl5/Git/LoadCPAN.pm
+/usr/share/perl5/Git/LoadCPAN/Error.pm
+/usr/share/perl5/Git/LoadCPAN/Mail/Address.pm
+/usr/share/perl5/Git/Packet.pm
+/usr/share/perl5/Git/SVN.pm
+/usr/share/perl5/Git/SVN/Editor.pm
+/usr/share/perl5/Git/SVN/Fetcher.pm
+/usr/share/perl5/Git/SVN/GlobSpec.pm
+/usr/share/perl5/Git/SVN/Log.pm
+/usr/share/perl5/Git/SVN/Memoize/YAML.pm
+/usr/share/perl5/Git/SVN/Migration.pm
+/usr/share/perl5/Git/SVN/Prompt.pm
+/usr/share/perl5/Git/SVN/Ra.pm
+/usr/share/perl5/Git/SVN/Utils.pm
+
+%files libexec
+%defattr(-,root,root,-)
+/usr/libexec/git-core/git
+/usr/libexec/git-core/git-add
+/usr/libexec/git-core/git-am
+/usr/libexec/git-core/git-annotate
+/usr/libexec/git-core/git-apply
+/usr/libexec/git-core/git-archive
+/usr/libexec/git-core/git-bisect
+/usr/libexec/git-core/git-bisect--helper
+/usr/libexec/git-core/git-blame
+/usr/libexec/git-core/git-branch
+/usr/libexec/git-core/git-bugreport
+/usr/libexec/git-core/git-bundle
+/usr/libexec/git-core/git-cat-file
+/usr/libexec/git-core/git-check-attr
+/usr/libexec/git-core/git-check-ignore
+/usr/libexec/git-core/git-check-mailmap
+/usr/libexec/git-core/git-check-ref-format
+/usr/libexec/git-core/git-checkout
+/usr/libexec/git-core/git-checkout--worker
+/usr/libexec/git-core/git-checkout-index
+/usr/libexec/git-core/git-cherry
+/usr/libexec/git-core/git-cherry-pick
+/usr/libexec/git-core/git-citool
+/usr/libexec/git-core/git-clean
+/usr/libexec/git-core/git-clone
+/usr/libexec/git-core/git-column
+/usr/libexec/git-core/git-commit
+/usr/libexec/git-core/git-commit-graph
+/usr/libexec/git-core/git-commit-tree
+/usr/libexec/git-core/git-config
+/usr/libexec/git-core/git-count-objects
+/usr/libexec/git-core/git-credential
+/usr/libexec/git-core/git-credential-cache
+/usr/libexec/git-core/git-credential-cache--daemon
+/usr/libexec/git-core/git-credential-store
+/usr/libexec/git-core/git-daemon
+/usr/libexec/git-core/git-describe
+/usr/libexec/git-core/git-diff
+/usr/libexec/git-core/git-diff-files
+/usr/libexec/git-core/git-diff-index
+/usr/libexec/git-core/git-diff-tree
+/usr/libexec/git-core/git-difftool
+/usr/libexec/git-core/git-difftool--helper
+/usr/libexec/git-core/git-env--helper
+/usr/libexec/git-core/git-fast-export
+/usr/libexec/git-core/git-fast-import
+/usr/libexec/git-core/git-fetch
+/usr/libexec/git-core/git-fetch-pack
+/usr/libexec/git-core/git-filter-branch
+/usr/libexec/git-core/git-fmt-merge-msg
+/usr/libexec/git-core/git-for-each-ref
+/usr/libexec/git-core/git-for-each-repo
+/usr/libexec/git-core/git-format-patch
+/usr/libexec/git-core/git-fsck
+/usr/libexec/git-core/git-fsck-objects
+/usr/libexec/git-core/git-gc
+/usr/libexec/git-core/git-get-tar-commit-id
+/usr/libexec/git-core/git-grep
+/usr/libexec/git-core/git-hash-object
+/usr/libexec/git-core/git-help
+/usr/libexec/git-core/git-http-backend
+/usr/libexec/git-core/git-http-fetch
+/usr/libexec/git-core/git-http-push
+/usr/libexec/git-core/git-imap-send
+/usr/libexec/git-core/git-index-pack
+/usr/libexec/git-core/git-init
+/usr/libexec/git-core/git-init-db
+/usr/libexec/git-core/git-interpret-trailers
+/usr/libexec/git-core/git-log
+/usr/libexec/git-core/git-ls-files
+/usr/libexec/git-core/git-ls-remote
+/usr/libexec/git-core/git-ls-tree
+/usr/libexec/git-core/git-mailinfo
+/usr/libexec/git-core/git-mailsplit
+/usr/libexec/git-core/git-maintenance
+/usr/libexec/git-core/git-merge
+/usr/libexec/git-core/git-merge-base
+/usr/libexec/git-core/git-merge-file
+/usr/libexec/git-core/git-merge-index
+/usr/libexec/git-core/git-merge-octopus
+/usr/libexec/git-core/git-merge-one-file
+/usr/libexec/git-core/git-merge-ours
+/usr/libexec/git-core/git-merge-recursive
+/usr/libexec/git-core/git-merge-resolve
+/usr/libexec/git-core/git-merge-subtree
+/usr/libexec/git-core/git-merge-tree
+/usr/libexec/git-core/git-mergetool
+/usr/libexec/git-core/git-mergetool--lib
+/usr/libexec/git-core/git-mktag
+/usr/libexec/git-core/git-mktree
+/usr/libexec/git-core/git-multi-pack-index
+/usr/libexec/git-core/git-mv
+/usr/libexec/git-core/git-name-rev
+/usr/libexec/git-core/git-notes
+/usr/libexec/git-core/git-pack-objects
+/usr/libexec/git-core/git-pack-redundant
+/usr/libexec/git-core/git-pack-refs
+/usr/libexec/git-core/git-patch-id
+/usr/libexec/git-core/git-prune
+/usr/libexec/git-core/git-prune-packed
+/usr/libexec/git-core/git-pull
+/usr/libexec/git-core/git-push
+/usr/libexec/git-core/git-quiltimport
+/usr/libexec/git-core/git-range-diff
+/usr/libexec/git-core/git-read-tree
+/usr/libexec/git-core/git-rebase
+/usr/libexec/git-core/git-rebase--preserve-merges
+/usr/libexec/git-core/git-receive-pack
+/usr/libexec/git-core/git-reflog
+/usr/libexec/git-core/git-remote
+/usr/libexec/git-core/git-remote-ext
+/usr/libexec/git-core/git-remote-fd
+/usr/libexec/git-core/git-remote-ftp
+/usr/libexec/git-core/git-remote-ftps
+/usr/libexec/git-core/git-remote-http
+/usr/libexec/git-core/git-remote-https
+/usr/libexec/git-core/git-repack
+/usr/libexec/git-core/git-replace
+/usr/libexec/git-core/git-rerere
+/usr/libexec/git-core/git-reset
+/usr/libexec/git-core/git-restore
+/usr/libexec/git-core/git-rev-list
+/usr/libexec/git-core/git-rev-parse
+/usr/libexec/git-core/git-revert
+/usr/libexec/git-core/git-rm
+/usr/libexec/git-core/git-send-pack
+/usr/libexec/git-core/git-sh-i18n
+/usr/libexec/git-core/git-sh-i18n--envsubst
+/usr/libexec/git-core/git-sh-setup
+/usr/libexec/git-core/git-shell
+/usr/libexec/git-core/git-shortlog
+/usr/libexec/git-core/git-show
+/usr/libexec/git-core/git-show-branch
+/usr/libexec/git-core/git-show-index
+/usr/libexec/git-core/git-show-ref
+/usr/libexec/git-core/git-sparse-checkout
+/usr/libexec/git-core/git-stage
+/usr/libexec/git-core/git-stash
+/usr/libexec/git-core/git-status
+/usr/libexec/git-core/git-stripspace
+/usr/libexec/git-core/git-submodule
+/usr/libexec/git-core/git-submodule--helper
+/usr/libexec/git-core/git-switch
+/usr/libexec/git-core/git-symbolic-ref
+/usr/libexec/git-core/git-tag
+/usr/libexec/git-core/git-unpack-file
+/usr/libexec/git-core/git-unpack-objects
+/usr/libexec/git-core/git-update-index
+/usr/libexec/git-core/git-update-ref
+/usr/libexec/git-core/git-update-server-info
+/usr/libexec/git-core/git-upload-archive
+/usr/libexec/git-core/git-upload-pack
+/usr/libexec/git-core/git-var
+/usr/libexec/git-core/git-verify-commit
+/usr/libexec/git-core/git-verify-pack
+/usr/libexec/git-core/git-verify-tag
+/usr/libexec/git-core/git-web--browse
+/usr/libexec/git-core/git-whatchanged
+/usr/libexec/git-core/git-worktree
+/usr/libexec/git-core/git-write-tree
+/usr/libexec/git-core/mergetools/araxis
+/usr/libexec/git-core/mergetools/bc
+/usr/libexec/git-core/mergetools/codecompare
+/usr/libexec/git-core/mergetools/deltawalker
+/usr/libexec/git-core/mergetools/diffmerge
+/usr/libexec/git-core/mergetools/diffuse
+/usr/libexec/git-core/mergetools/ecmerge
+/usr/libexec/git-core/mergetools/emerge
+/usr/libexec/git-core/mergetools/examdiff
+/usr/libexec/git-core/mergetools/guiffy
+/usr/libexec/git-core/mergetools/gvimdiff
+/usr/libexec/git-core/mergetools/kdiff3
+/usr/libexec/git-core/mergetools/kompare
+/usr/libexec/git-core/mergetools/meld
+/usr/libexec/git-core/mergetools/nvimdiff
+/usr/libexec/git-core/mergetools/opendiff
+/usr/libexec/git-core/mergetools/p4merge
+/usr/libexec/git-core/mergetools/smerge
+/usr/libexec/git-core/mergetools/tkdiff
+/usr/libexec/git-core/mergetools/tortoisemerge
+/usr/libexec/git-core/mergetools/vimdiff
+/usr/libexec/git-core/mergetools/winmerge
+/usr/libexec/git-core/mergetools/xxdiff
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/git-add.1
+/usr/share/man/man1/git-am.1
+/usr/share/man/man1/git-annotate.1
+/usr/share/man/man1/git-apply.1
+/usr/share/man/man1/git-archimport.1
+/usr/share/man/man1/git-archive.1
+/usr/share/man/man1/git-bisect.1
+/usr/share/man/man1/git-blame.1
+/usr/share/man/man1/git-branch.1
+/usr/share/man/man1/git-bugreport.1
+/usr/share/man/man1/git-bundle.1
+/usr/share/man/man1/git-cat-file.1
+/usr/share/man/man1/git-check-attr.1
+/usr/share/man/man1/git-check-ignore.1
+/usr/share/man/man1/git-check-mailmap.1
+/usr/share/man/man1/git-check-ref-format.1
+/usr/share/man/man1/git-checkout-index.1
+/usr/share/man/man1/git-checkout.1
+/usr/share/man/man1/git-cherry-pick.1
+/usr/share/man/man1/git-cherry.1
+/usr/share/man/man1/git-citool.1
+/usr/share/man/man1/git-clean.1
+/usr/share/man/man1/git-clone.1
+/usr/share/man/man1/git-column.1
+/usr/share/man/man1/git-commit-graph.1
+/usr/share/man/man1/git-commit-tree.1
+/usr/share/man/man1/git-commit.1
+/usr/share/man/man1/git-config.1
+/usr/share/man/man1/git-count-objects.1
+/usr/share/man/man1/git-credential-cache--daemon.1
+/usr/share/man/man1/git-credential-cache.1
+/usr/share/man/man1/git-credential-store.1
+/usr/share/man/man1/git-credential.1
+/usr/share/man/man1/git-cvsexportcommit.1
+/usr/share/man/man1/git-cvsimport.1
+/usr/share/man/man1/git-cvsserver.1
+/usr/share/man/man1/git-daemon.1
+/usr/share/man/man1/git-describe.1
+/usr/share/man/man1/git-diff-files.1
+/usr/share/man/man1/git-diff-index.1
+/usr/share/man/man1/git-diff-tree.1
+/usr/share/man/man1/git-diff.1
+/usr/share/man/man1/git-difftool.1
+/usr/share/man/man1/git-fast-export.1
+/usr/share/man/man1/git-fast-import.1
+/usr/share/man/man1/git-fetch-pack.1
+/usr/share/man/man1/git-fetch.1
+/usr/share/man/man1/git-filter-branch.1
+/usr/share/man/man1/git-fmt-merge-msg.1
+/usr/share/man/man1/git-for-each-ref.1
+/usr/share/man/man1/git-for-each-repo.1
+/usr/share/man/man1/git-format-patch.1
+/usr/share/man/man1/git-fsck-objects.1
+/usr/share/man/man1/git-fsck.1
+/usr/share/man/man1/git-gc.1
+/usr/share/man/man1/git-get-tar-commit-id.1
+/usr/share/man/man1/git-grep.1
+/usr/share/man/man1/git-hash-object.1
+/usr/share/man/man1/git-help.1
+/usr/share/man/man1/git-http-backend.1
+/usr/share/man/man1/git-http-fetch.1
+/usr/share/man/man1/git-http-push.1
+/usr/share/man/man1/git-imap-send.1
+/usr/share/man/man1/git-index-pack.1
+/usr/share/man/man1/git-init-db.1
+/usr/share/man/man1/git-init.1
+/usr/share/man/man1/git-instaweb.1
+/usr/share/man/man1/git-interpret-trailers.1
+/usr/share/man/man1/git-log.1
+/usr/share/man/man1/git-ls-files.1
+/usr/share/man/man1/git-ls-remote.1
+/usr/share/man/man1/git-ls-tree.1
+/usr/share/man/man1/git-mailinfo.1
+/usr/share/man/man1/git-mailsplit.1
+/usr/share/man/man1/git-maintenance.1
+/usr/share/man/man1/git-merge-base.1
+/usr/share/man/man1/git-merge-file.1
+/usr/share/man/man1/git-merge-index.1
+/usr/share/man/man1/git-merge-one-file.1
+/usr/share/man/man1/git-merge-tree.1
+/usr/share/man/man1/git-merge.1
+/usr/share/man/man1/git-mergetool--lib.1
+/usr/share/man/man1/git-mergetool.1
+/usr/share/man/man1/git-mktag.1
+/usr/share/man/man1/git-mktree.1
+/usr/share/man/man1/git-multi-pack-index.1
+/usr/share/man/man1/git-mv.1
+/usr/share/man/man1/git-name-rev.1
+/usr/share/man/man1/git-notes.1
+/usr/share/man/man1/git-p4.1
+/usr/share/man/man1/git-pack-objects.1
+/usr/share/man/man1/git-pack-redundant.1
+/usr/share/man/man1/git-pack-refs.1
+/usr/share/man/man1/git-patch-id.1
+/usr/share/man/man1/git-prune-packed.1
+/usr/share/man/man1/git-prune.1
+/usr/share/man/man1/git-pull.1
+/usr/share/man/man1/git-push.1
+/usr/share/man/man1/git-quiltimport.1
+/usr/share/man/man1/git-range-diff.1
+/usr/share/man/man1/git-read-tree.1
+/usr/share/man/man1/git-rebase.1
+/usr/share/man/man1/git-receive-pack.1
+/usr/share/man/man1/git-reflog.1
+/usr/share/man/man1/git-remote-ext.1
+/usr/share/man/man1/git-remote-fd.1
+/usr/share/man/man1/git-remote.1
+/usr/share/man/man1/git-repack.1
+/usr/share/man/man1/git-replace.1
+/usr/share/man/man1/git-request-pull.1
+/usr/share/man/man1/git-rerere.1
+/usr/share/man/man1/git-reset.1
+/usr/share/man/man1/git-restore.1
+/usr/share/man/man1/git-rev-list.1
+/usr/share/man/man1/git-rev-parse.1
+/usr/share/man/man1/git-revert.1
+/usr/share/man/man1/git-rm.1
+/usr/share/man/man1/git-send-email.1
+/usr/share/man/man1/git-send-pack.1
+/usr/share/man/man1/git-sh-i18n--envsubst.1
+/usr/share/man/man1/git-sh-i18n.1
+/usr/share/man/man1/git-sh-setup.1
+/usr/share/man/man1/git-shell.1
+/usr/share/man/man1/git-shortlog.1
+/usr/share/man/man1/git-show-branch.1
+/usr/share/man/man1/git-show-index.1
+/usr/share/man/man1/git-show-ref.1
+/usr/share/man/man1/git-show.1
+/usr/share/man/man1/git-sparse-checkout.1
+/usr/share/man/man1/git-stage.1
+/usr/share/man/man1/git-stash.1
+/usr/share/man/man1/git-status.1
+/usr/share/man/man1/git-stripspace.1
+/usr/share/man/man1/git-submodule.1
+/usr/share/man/man1/git-svn.1
+/usr/share/man/man1/git-switch.1
+/usr/share/man/man1/git-symbolic-ref.1
+/usr/share/man/man1/git-tag.1
+/usr/share/man/man1/git-unpack-file.1
+/usr/share/man/man1/git-unpack-objects.1
+/usr/share/man/man1/git-update-index.1
+/usr/share/man/man1/git-update-ref.1
+/usr/share/man/man1/git-update-server-info.1
+/usr/share/man/man1/git-upload-archive.1
+/usr/share/man/man1/git-upload-pack.1
+/usr/share/man/man1/git-var.1
+/usr/share/man/man1/git-verify-commit.1
+/usr/share/man/man1/git-verify-pack.1
+/usr/share/man/man1/git-verify-tag.1
+/usr/share/man/man1/git-web--browse.1
+/usr/share/man/man1/git-whatchanged.1
+/usr/share/man/man1/git-worktree.1
+/usr/share/man/man1/git-write-tree.1
+/usr/share/man/man1/git.1
+/usr/share/man/man1/gitweb.1
+/usr/share/man/man5/gitattributes.5
+/usr/share/man/man5/githooks.5
+/usr/share/man/man5/gitignore.5
+/usr/share/man/man5/gitmailmap.5
+/usr/share/man/man5/gitmodules.5
+/usr/share/man/man5/gitrepository-layout.5
+/usr/share/man/man5/gitweb.conf.5
+/usr/share/man/man7/gitcli.7
+/usr/share/man/man7/gitcore-tutorial.7
+/usr/share/man/man7/gitcredentials.7
+/usr/share/man/man7/gitcvs-migration.7
+/usr/share/man/man7/gitdiffcore.7
+/usr/share/man/man7/giteveryday.7
+/usr/share/man/man7/gitfaq.7
+/usr/share/man/man7/gitglossary.7
+/usr/share/man/man7/gitnamespaces.7
+/usr/share/man/man7/gitremote-helpers.7
+/usr/share/man/man7/gitrevisions.7
+/usr/share/man/man7/gitsubmodules.7
+/usr/share/man/man7/gittutorial-2.7
+/usr/share/man/man7/gittutorial.7
+/usr/share/man/man7/gitworkflows.7
+
+%files locales -f git.lang
 %defattr(-,root,root,-)

@@ -15,6 +15,7 @@ blender
 bro
 ccache
 ceph
+certbot
 cgit
 chrome-gnome-shell
 cmake
@@ -23,6 +24,8 @@ codec2
 conda
 dino
 direwolf
+docker
+docker-compose
 dwarves
 embree
 fdm_materials
@@ -31,7 +34,9 @@ flatpak-builder
 fontforge
 freedv
 gcompris-qt
+git-gui
 gmsh
+horovod
 ipmctl
 js8call
 kdenlive
@@ -48,6 +53,7 @@ mariadb
 messagelib
 mkl-dnn
 mxnet
+mxnet-dev
 neovim
 obs-studio
 openal-soft

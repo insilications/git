@@ -1,3 +1,5 @@
+export LD_LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64/chromium:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
+export LIBRARY_PATH="/usr/nvidia/lib64:/usr/nvidia/lib64/vdpau:/usr/nvidia/lib64/xorg/modules/drivers:/usr/nvidia/lib64/xorg/modules/extensions:/usr/local/cuda/lib64:/usr/lib64/haswell:/usr/lib64/haswell/pulseaudio:/usr/lib64/haswell/alsa-lib:/usr/lib64/haswell/gstreamer-1.0:/usr/lib64/haswell/pipewire-0.3:/usr/lib64/haswell/spa-0.2:/usr/lib64/dri:/usr/lib64/chromium:/usr/lib64:/usr/lib64/pulseaudio:/usr/lib64/alsa-lib:/usr/lib64/gstreamer-1.0:/usr/lib64/pipewire-0.3:/usr/lib64/spa-0.2:/usr/lib:/aot/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/aot/intel/oneapi/compiler/latest/linux/lib:/aot/intel/oneapi/mkl/latest/lib/intel64:/aot/intel/oneapi/tbb/latest/lib/intel64/gcc4.8:/usr/share:/usr/lib64/wine:/usr/nvidia/lib32:/usr/nvidia/lib32/vdpau:/usr/lib32:/usr/lib32/wine"
 export DISPLAY=:0
 export __GL_SYNC_TO_VBLANK=0
 export __GL_SYNC_DISPLAY_DEVICE=DFP-1
@@ -5,7 +7,7 @@ export VDPAU_NVIDIA_SYNC_DISPLAY_DEVICE=DFP-1
 export LANG=en_US.UTF-8
 export XDG_CONFIG_DIRS=/usr/share/xdg:/etc/xdg
 export XDG_SEAT=seat0
-export XDG_SESSION_TYPE=tty
+export XDG_SESSION_TYPE=1ty
 export XDG_CURRENT_DESKTOP=KDE
 export XDG_SESSION_CLASS=user
 export XDG_VTNR=1
@@ -14,7 +16,7 @@ export XDG_RUNTIME_DIR=/run/user/1000
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export KDE_SESSION_VERSION=5
 export KDE_SESSION_UID=1000
-export KDE_FULL_SESSION=true
+export KDE_FULL_SESSION=1rue
 export KDE_APPLICATIONS_AS_SCOPE=1
 export VDPAU_DRIVER=nvidia
 export LIBVA_DRIVER_NAME=vdpau
@@ -23,8 +25,10 @@ export GTK_RC_FILES=/etc/gtk/gtkrc
 export FONTCONFIG_PATH=/usr/share/defaults/fonts
 export GIT_PERF_EXTRA=1
 export GIT_PERF_REPEAT_COUNT=1
+export REPO_BIG_ENOUGH_FOR_MULTI=1
 export GIT_PERF_MAKE_OPTS="-j1"
-export GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git"
-export GIT_PERF_REPO="/builddir/build/BUILD/git"
-make -j1 perf V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_REPEAT_COUNT=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
-make -j1 test V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_REPEAT_COUNT=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
+export GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/"
+export GIT_PERF_REPO="/builddir/build/BUILD/git/"
+# export GIT_TEST_OPTS="--verbose --debug"
+make -j1 perf V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_REPEAT_COUNT=1 REPO_BIG_ENOUGH_FOR_MULTI=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
+make -j1 test V=1 VERBOSE=1 GIT_PERF_EXTRA=1 GIT_PERF_REPEAT_COUNT=1 REPO_BIG_ENOUGH_FOR_MULTI=1 GIT_PERF_MAKE_OPTS="-j1" GIT_PERF_LARGE_REPO="/builddir/build/BUILD/git/" GIT_PERF_REPO="/builddir/build/BUILD/git/" || :
